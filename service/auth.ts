@@ -37,10 +37,6 @@ export const register = async (
       password,
     });
     if (response.data.status === "success") {
-      // Kayıt başarılıysa token'ı AsyncStorage'a kaydediyoruz
-      const token = response.data.data.token;
-      await AsyncStorage.setItem("userToken", token);
-      // Başarılı sonuç döndürülüyor
       return response.data;
     } else {
       console.error("Kayıt başarısız:", response.data.message);

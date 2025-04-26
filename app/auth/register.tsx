@@ -9,6 +9,7 @@ import {
   Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
+import { register } from "@/service/auth";
 
 export default function RegisterScreen() {
   const [email, setEmail] = useState("");
@@ -55,7 +56,20 @@ export default function RegisterScreen() {
     //   return;
     // }
 
-    router.replace("/tabs");
+    // Kayıt işlemi
+    register(email, username, password)
+      .then((response) => {
+        if (response.status === "success") {
+          Alert.alert("Başarılı", "Kayıt işlemi başarılı.");
+          router.replace("/auth/login");
+        } else {
+          Alert.alert("Hata", response.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Kayıt hatası:", error);
+        Alert.alert("Hata", "Kayıt işlemi sırasında bir hata oluştu.");
+      });
   };
 
   const handleLogin = () => {

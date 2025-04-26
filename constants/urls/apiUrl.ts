@@ -3,5 +3,5 @@ export const BASE_URL = "http://192.168.87.219:5001/api";
 export const endpoints = {
   login: `${BASE_URL}/auth/login`,
   register: `${BASE_URL}/auth/register`,
-  user: `${BASE_URL}/auth/user`,
+  user: `${BASE_URL}/users/get-user`,
 };
