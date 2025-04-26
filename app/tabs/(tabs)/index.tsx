@@ -8,6 +8,13 @@ import { logout } from "@/service/auth";
 import { getToken } from "@/utils/storage";
 import { useEffect, useState } from "react";
 import { getUser } from "@/service/user";
+import { View } from "@/components/Themed";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 
 // userData'nın tipi
 type UserData = {
@@ -46,18 +53,21 @@ export default function Home() {
   }, [router]);
 
   return (
-    <Center className="flex-1">
-      <Divider />
-      <Heading>Welcome to the Word Game!</Heading>
-      {/* userData varsa username'ı göster */}
-      <Text>{userData?.username}</Text>
-      <Button
-        onPress={() => {
-          handleLogout();
-        }}
-      >
-        <Text>Quit</Text>
-      </Button>
-    </Center>
+    <View className="flex-1 items-center justify-center px-4 py-4">
+      <View className="w-full h-full max-w-md  dark:bg-white rounded-2xl shadow-lg">
+        <Text className="text-lg font-medium mb-2 text-gray-700">
+          Hoş Geldin {userData?.username}!
+        </Text>
+
+        <TouchableOpacity
+          onPress={handleLogout}
+          className="w-full bg-indigo-500 py-3 rounded-xl mt-2"
+        >
+          <Text className="text-center text-white font-semibold text-lg">
+            Çıkış Yap
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
