@@ -8,14 +8,19 @@ import {
   Platform,
 } from "react-native";
 import { useRouter } from "expo-router";
+import { login } from "@/service/auth";
+
 export default function LoginScreen() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (username.trim() !== "") {
-      // Giriş yapıldığında burada işlemler yapılabilir (navigasyon vs.)
-      console.log("Giriş Yapıldı:", username);
+      await login(username, password).then((response) => {
+        console.log("Giriş Başarılı:", response);
+
+        router.replace("/tabs");
+      });
     } else {
       console.log("Kullanıcı adı boş olamaz.");
     }
