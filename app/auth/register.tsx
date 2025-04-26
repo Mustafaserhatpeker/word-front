@@ -18,20 +18,17 @@ export default function RegisterScreen() {
   const router = useRouter();
 
   const validateEmail = (email: string) => {
-    // Geçerli bir e-posta formatı kontrolü
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
   };
 
   const validatePassword = (password: string) => {
-    // Şifre için gereksinimler: 1 büyük harf, 1 küçük harf, 1 noktalama işareti, ve 8 karakter
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
     return passwordRegex.test(password);
   };
 
   const handleRegister = () => {
-    // Alanlar boş mu kontrolü
     if (
       email.trim() === "" ||
       username.trim() === "" ||
@@ -56,7 +53,6 @@ export default function RegisterScreen() {
     //   return;
     // }
 
-    // Kayıt işlemi
     register(email, username, password)
       .then((response) => {
         if (response.status === "success") {
