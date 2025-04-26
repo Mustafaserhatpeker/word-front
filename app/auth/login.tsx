@@ -17,8 +17,6 @@ export default function LoginScreen() {
   const handleLogin = async () => {
     if (username.trim() !== "") {
       await login(username, password).then((response) => {
-        console.log("Giriş Başarılı:", response);
-
         router.replace("/tabs");
       });
     } else {
