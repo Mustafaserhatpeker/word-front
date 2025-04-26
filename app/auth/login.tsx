@@ -1,0 +1,73 @@
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+import { useRouter } from "expo-router";
+export default function LoginScreen() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const handleLogin = () => {
+    if (username.trim() !== "") {
+      // Giriş yapıldığında burada işlemler yapılabilir (navigasyon vs.)
+      console.log("Giriş Yapıldı:", username);
+    } else {
+      console.log("Kullanıcı adı boş olamaz.");
+    }
+  };
+  const handleRegister = () => {
+    // Kayıt olma işlemleri burada yapılabilir
+    console.log("Kayıt Olma İşlemi");
+    router.push("/auth/register");
+  };
+
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      className="flex-1 items-center justify-center bg-indigo-100 px-4"
+    >
+      <Text className="text-3xl font-bold text-center text-indigo-600 mb-6">
+        Kelime Oyunu
+      </Text>
+      <View className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
+        <Text className="text-lg font-medium mb-2 text-gray-700">
+          Kullanıcı Adı
+        </Text>
+        <TextInput
+          value={username}
+          onChangeText={setUsername}
+          placeholder="Bir kullanıcı adı girin"
+          className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
+        />
+        <TextInput
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Şifre girin"
+          secureTextEntry={true}
+          className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
+        />
+        <TouchableOpacity
+          onPress={handleLogin}
+          className="w-full bg-indigo-500 py-3 rounded-xl mt-2"
+        >
+          <Text className="text-center text-white font-semibold text-lg">
+            Giriş Yap
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={handleRegister}
+          className="w-full bg-indigo-500 py-3 rounded-xl mt-2"
+        >
+          <Text className="text-center text-white font-semibold text-lg">
+            Üye Ol
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </KeyboardAvoidingView>
+  );
+}
