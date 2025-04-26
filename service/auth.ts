@@ -63,3 +63,12 @@ export const getToken = async () => {
     return null;
   }
 };
+
+export const logout = async () => {
+  try {
+    await AsyncStorage.removeItem("userToken");
+    console.log("Çıkış yapıldı.");
+  } catch (error) {
+    console.error("Çıkış yapma hatası:", error);
+  }
+};
