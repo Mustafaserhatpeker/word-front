@@ -1,4 +1,3 @@
-import EditScreenInfo from "@/components/EditScreenInfo";
 import { Button } from "@/components/ui/button";
 import { Center } from "@/components/ui/center";
 import { Divider } from "@/components/ui/divider";
