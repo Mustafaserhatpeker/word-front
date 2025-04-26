@@ -11,11 +11,9 @@ export const login = async (email: string, password: string) => {
     });
 
     if (response.data.status === "success") {
-      // Giriş başarılıysa token'ı AsyncStorage'a kaydediyoruz
       const token = response.data.data.token;
       await AsyncStorage.setItem("userToken", token);
 
-      // Başarılı sonuç döndürülüyor
       return response.data;
     } else {
       console.error("Giriş başarısız:", response.data.message);

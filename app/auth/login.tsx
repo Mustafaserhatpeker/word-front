@@ -17,7 +17,9 @@ export default function LoginScreen() {
   const handleLogin = async () => {
     if (username.trim() !== "") {
       await login(username, password).then((response) => {
-        router.replace("/tabs");
+        if (response.status === "success") {
+          router.replace("/tabs");
+        }
       });
     } else {
       console.log("Kullanıcı adı boş olamaz.");
