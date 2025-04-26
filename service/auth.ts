@@ -54,16 +54,6 @@ export const register = async (
   }
 };
 
-export const getToken = async () => {
-  try {
-    const token = await AsyncStorage.getItem("userToken");
-    return token;
-  } catch (error) {
-    console.error("Token alma hatası:", error);
-    return null;
-  }
-};
-
 export const logout = async () => {
   try {
     await AsyncStorage.removeItem("userToken");
