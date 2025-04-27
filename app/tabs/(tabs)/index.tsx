@@ -113,7 +113,7 @@ export default function Home() {
     };
 
     checkLoginStatus();
-    const exampleScore = 0; // örnek skor
+    const exampleScore = 1200; // örnek skor
     setScore(exampleScore);
     calculateLeague(exampleScore);
   }, [router]);
