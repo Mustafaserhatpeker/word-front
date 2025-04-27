@@ -16,6 +16,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { Box } from "@/components/ui/box";
 
 // userData'nın tipi
 type UserData = {
@@ -60,18 +61,38 @@ export default function Home() {
       resizeMode="cover"
     >
       <View
-        className="flex-1 h-full  place-items-start justify-start px-6 py-6 "
-        style={{ flex: 1, backgroundColor: "transparent" }}
+        className="flex-1 h-full  place-items-start justify-start  py-6 "
+        style={{ flex: 1, backgroundColor: "#FDF6E8" }}
       >
-        <Text className="text-lg  mb-2  text-white font-bold">
-          Hoş Geldin {userData?.username}!
-        </Text>
+        <View
+          style={{ backgroundColor: "#FDF6E8" }}
+          className="w-full max-w-md p-4 pt-2  border-b-2 border-orange-800 "
+        >
+          <Text className="text-lg  mb-2  text-orange-950 font-bold">
+            Hoş Geldin {userData?.username}!
+          </Text>
+        </View>
 
         <View
-          style={{ backgroundColor: "transparent" }}
-          className="min-h-96  w-full max-w-md p-6 rounded-2xl "
+          style={{ backgroundColor: "#FDF6E8" }}
+          className="min-h-96  w-full max-w-md   "
         >
-          <Text>selam</Text>
+          <View className="w-full flex flex-row justify-between items-center">
+            <Box
+              className="p-4 w-1/2 flex flex-col "
+              style={{ backgroundColor: "#E99B43" }}
+            >
+              <Text className="text-white font-bold">WorDox Skoru</Text>
+              <Text>selam</Text>
+            </Box>
+            <Box
+              className="p-4 w-1/2 flex flex-col "
+              style={{ backgroundColor: "#E99B43" }}
+            >
+              <Text className="text-white font-bold">WorDox Ligi</Text>
+              <Text>selam</Text>
+            </Box>
+          </View>
         </View>
 
         <TouchableOpacity
