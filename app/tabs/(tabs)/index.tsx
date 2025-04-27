@@ -70,20 +70,23 @@ export default function Home() {
 
   const currentIcon = images[leagueIcon || "default"];
   const currentScene = scenes[leagueIcon || "default"];
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      const token = await getToken();
-      if (!token) {
-        router.replace("/auth/login");
-      } else {
-        try {
+      try {
+        const token = await getToken();
+        if (!token) {
+          router.replace("/auth/login");
+        } else {
           const response = await getUser();
           setUserData(response.data);
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-          router.replace("/auth/login");
         }
+      } catch (error) {
+        console.error("Error during login check:", error);
+        router.replace("/auth/login");
+      } finally {
+        setLoading(false); // Hata da olsa doğru da olsa loading'i kapat
       }
     };
 
@@ -117,6 +120,14 @@ export default function Home() {
     setScore(exampleScore);
     calculateLeague(exampleScore);
   }, [router]);
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Yükleniyor...</Text>
+      </View>
+    );
+  }
 
   return (
     <ImageBackground

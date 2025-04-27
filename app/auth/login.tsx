@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
   ImageBackground,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { login } from "@/service/auth";
-
+import { getToken } from "@/utils/storage";
 export default function LoginScreen() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +29,15 @@ export default function LoginScreen() {
     console.log("Kayıt Olma İşlemi");
     router.push("/auth/register");
   };
-
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await getToken();
+      if (token) {
+        router.replace("/tabs");
+      }
+    };
+    checkToken();
+  }, []);
   return (
     <ImageBackground
       source={require("../../assets/images/r8.png")}

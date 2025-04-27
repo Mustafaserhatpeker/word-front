@@ -1,7 +1,8 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { endpoints } from "@/constants/urls/apiUrl";
-
+import { removeToken, saveToken } from "@/utils/storage";
+import { rem } from "react-native-css-interop";
 // Giriş Fonksiyonu
 export const login = async (email: string, password: string) => {
   try {
@@ -12,7 +13,7 @@ export const login = async (email: string, password: string) => {
 
     if (response.data.status === "success") {
       const token = response.data.data.token;
-      await AsyncStorage.setItem("userToken", token);
+      await saveToken(token);
 
       return response.data;
     } else {
@@ -50,7 +51,7 @@ export const register = async (
 
 export const logout = async () => {
   try {
-    await AsyncStorage.removeItem("userToken");
+    await removeToken();
     console.log("Çıkış yapıldı.");
   } catch (error) {
     console.error("Çıkış yapma hatası:", error);
