@@ -38,6 +38,7 @@ import l4scene from "../../../assets/scenes/l4.json";
 import l5scene from "../../../assets/scenes/l5.json";
 import l6scene from "../../../assets/scenes/l6.json";
 import { VStack } from "@/components/ui/vstack";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const router = useRouter();
@@ -152,7 +153,7 @@ export default function Home() {
               alignSelf: "flex-start",
             }}
             resizeMode="contain"
-            alt="WorDox Skoru"
+            alt="user avatar"
           />
           <Text className="text-lg ml-4 align-middle text-orange-950 font-bold">
             Hoş Geldin {userData?.username}!
@@ -232,9 +233,9 @@ export default function Home() {
           </View>
           <View
             style={{ backgroundColor: "#FDF6E8" }}
-            className="w-full flex flex-col justify-center items-center mt-4"
+            className="w-full flex flex-col justify-center items-center mt-4 px-2"
           >
-            <TouchableOpacity className="w-11/12  bg-orange-300 py-3 rounded-xl mt-2">
+            <TouchableOpacity className="w-full  bg-orange-300 py-3 rounded-xl mt-2">
               <Text className="text-center text-white font-semibold text-lg">
                 Oyun Başlat
               </Text>
@@ -246,15 +247,157 @@ export default function Home() {
               }} // max-h-96 = 384px
               className="w-full mt-6"
             >
-              <VStack space="xs" className="bg-secondary-400" reversed={false}>
-                <Box className=" flex flex-col justify-start p-4 h-40 w-full bg-orange-300  ">
-                  <Text className="text-white font-bold text-lg ">
-                    Sıra Sende
-                  </Text>
+              <VStack
+                style={{
+                  backgroundColor: "#FDF6E8",
+                }}
+                space="xs"
+                reversed={false}
+              >
+                <Box className=" flex flex-col justify-start p-2 h-56 w-full bg-orange-400 rounded-xl  ">
+                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
+                    <Text className="text-white font-bold text-lg ">
+                      Hamle Sırası : {userData?.username} ' da
+                    </Text>
+                    <Text className="text-white  text-lg ">
+                      Kalan Süre :{" "}
+                      <Text className="text-white font-bold text-lg">
+                        00:00
+                      </Text>
+                    </Text>
+                  </Box>
+                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
+                    <Image
+                      source={require("../../../assets/images/avatars/ma1.png")}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 10,
+                        alignSelf: "flex-start",
+                      }}
+                      resizeMode="contain"
+                      alt="user avatar"
+                    />
+                    <Text
+                      className="text-white font-extrabold text-3xl "
+                      style={{ alignSelf: "center" }}
+                    >
+                      VS
+                    </Text>
+                    <Image
+                      source={require("../../../assets/images/avatars/ma4.png")}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 10,
+                        alignSelf: "flex-start",
+                      }}
+                      resizeMode="contain"
+                      alt="user avatar"
+                    />
+                  </Box>
+                  <Button className="w-full bg-orange-300 rounded-xl mt-2">
+                    <Text className="text-white font-bold text-lg ">
+                      Hamle Yap
+                    </Text>
+                  </Button>
                 </Box>
-                <Box className="h-40 w-full bg-orange-300"></Box>
-                <Box className="h-40 w-full bg-orange-300"></Box>
-                <Box className="h-40 w-full bg-orange-300"></Box>
+                <Box className=" flex flex-col justify-start p-2 h-56 w-full bg-orange-400 rounded-xl  ">
+                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
+                    <Text className="text-white font-bold text-lg ">
+                      Hamle Sırası : {userData?.username} ' da
+                    </Text>
+                    <Text className="text-white  text-lg ">
+                      Kalan Süre :{" "}
+                      <Text className="text-white font-bold text-lg">
+                        00:00
+                      </Text>
+                    </Text>
+                  </Box>
+                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
+                    <Image
+                      source={require("../../../assets/images/avatars/ma1.png")}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 10,
+                        alignSelf: "flex-start",
+                      }}
+                      resizeMode="contain"
+                      alt="user avatar"
+                    />
+                    <Text
+                      className="text-white font-extrabold text-3xl "
+                      style={{ alignSelf: "center" }}
+                    >
+                      VS
+                    </Text>
+                    <Image
+                      source={require("../../../assets/images/avatars/ma7.png")}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 10,
+                        alignSelf: "flex-start",
+                      }}
+                      resizeMode="contain"
+                      alt="user avatar"
+                    />
+                  </Box>
+                  <Button className="w-full bg-orange-300 rounded-xl mt-2">
+                    <Text className="text-white font-bold text-lg ">
+                      Hamle Yap
+                    </Text>
+                  </Button>
+                </Box>
+                <Box className=" flex flex-col justify-start p-2 h-56 w-full bg-orange-400 rounded-xl  ">
+                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
+                    <Text className="text-white font-bold text-lg ">
+                      Hamle Sırası : {userData?.username} ' da
+                    </Text>
+                    <Text className="text-white  text-lg ">
+                      Kalan Süre :{" "}
+                      <Text className="text-white font-bold text-lg">
+                        00:00
+                      </Text>
+                    </Text>
+                  </Box>
+                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
+                    <Image
+                      source={require("../../../assets/images/avatars/ma1.png")}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 10,
+                        alignSelf: "flex-start",
+                      }}
+                      resizeMode="contain"
+                      alt="user avatar"
+                    />
+                    <Text
+                      className="text-white font-extrabold text-3xl "
+                      style={{ alignSelf: "center" }}
+                    >
+                      VS
+                    </Text>
+                    <Image
+                      source={require("../../../assets/images/avatars/ma5.png")}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 10,
+                        alignSelf: "flex-start",
+                      }}
+                      resizeMode="contain"
+                      alt="user avatar"
+                    />
+                  </Box>
+                  <Button className="w-full bg-orange-300 rounded-xl mt-2">
+                    <Text className="text-white font-bold text-lg ">
+                      Hamle Yap
+                    </Text>
+                  </Button>
+                </Box>
               </VStack>
             </ScrollView>
           </View>

@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ImageBackground, View } from "react-native";
 import { Box } from "@/components/ui/box";
 import { Text } from "@/components/ui/text";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "expo-router";
+import { getToken } from "@/utils/storage";
 
 export default function Home() {
   const router = useRouter();
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await getToken();
+      if (token) {
+        router.replace("/tabs");
+      }
+    };
+    checkToken();
+  }, []);
   return (
     <ImageBackground
       source={require("../assets/images/r8.png")}
