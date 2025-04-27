@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { getUser } from "@/service/user";
 import { View } from "@/components/Themed";
 import {
+  ImageBackground,
   KeyboardAvoidingView,
   Platform,
   TextInput,
@@ -53,25 +54,35 @@ export default function Home() {
   }, [router]);
 
   return (
-    <View className="flex-1 items-center justify-center px-4 py-4">
-      <View className="w-full h-full max-w-md  dark:bg-white rounded-2xl shadow-lg">
-        <Text className="text-lg font-medium mb-2 text-gray-500">
+    <ImageBackground
+      source={require("../../../assets/images/r8.png")}
+      style={{ flex: 1 }}
+      resizeMode="cover"
+    >
+      <View
+        className="flex-1 h-full  place-items-start justify-start px-6 py-6 "
+        style={{ flex: 1, backgroundColor: "transparent" }}
+      >
+        <Text className="text-lg  mb-2  text-white font-bold">
           Hoş Geldin {userData?.username}!
         </Text>
 
-        <View className="h-96">
+        <View
+          style={{ backgroundColor: "transparent" }}
+          className="min-h-96  w-full max-w-md p-6 rounded-2xl "
+        >
           <Text>selam</Text>
         </View>
 
         <TouchableOpacity
           onPress={handleLogout}
-          className="w-full bg-indigo-500 py-3 rounded-xl mt-2"
+          className="w-full bg-orange-300 py-3 rounded-xl mt-2"
         >
           <Text className="text-center text-white font-semibold text-lg">
             Çıkış Yap
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ImageBackground>
   );
 }

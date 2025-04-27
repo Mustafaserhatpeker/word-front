@@ -15,7 +15,7 @@ export default function Home() {
     >
       {/* Opacity katmanı */}
       <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)" }}>
-        <Box className="flex-1 justify-center items-center px-6">
+        <Box className="flex-1  justify-center items-center px-6">
           <Text className="text-white text-5xl font-bold mb-4 text-center">
             WorDox
           </Text>
