@@ -55,9 +55,13 @@ export default function Home() {
   return (
     <View className="flex-1 items-center justify-center px-4 py-4">
       <View className="w-full h-full max-w-md  dark:bg-white rounded-2xl shadow-lg">
-        <Text className="text-lg font-medium mb-2 text-gray-700">
+        <Text className="text-lg font-medium mb-2 text-gray-500">
           Hoş Geldin {userData?.username}!
         </Text>
+
+        <View className="h-96">
+          <Text>selam</Text>
+        </View>
 
         <TouchableOpacity
           onPress={handleLogout}
