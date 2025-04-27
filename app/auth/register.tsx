@@ -75,7 +75,7 @@ export default function RegisterScreen() {
 
   return (
     <ImageBackground
-      source={require("../../assets/images/bg2.webp")}
+      source={require("../../assets/images/r8.png")}
       style={{ flex: 1 }}
       resizeMode="cover"
     >
@@ -84,7 +84,7 @@ export default function RegisterScreen() {
         style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)" }}
       >
         <Text className="text-3xl font-bold text-center text-white mb-6">
-          Kayıt Ol
+          WorDox'a Kaydolun
         </Text>
 
         <View className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
@@ -123,7 +123,7 @@ export default function RegisterScreen() {
 
         <TouchableOpacity
           onPress={handleRegister}
-          className="w-full bg-indigo-500 py-3 rounded-xl mt-2"
+          className="w-full bg-orange-300 py-3 rounded-xl mt-2"
         >
           <Text className="text-center text-white font-semibold text-lg">
             Kayıt Ol
@@ -131,7 +131,7 @@ export default function RegisterScreen() {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={handleLogin}
-          className="w-full bg-indigo-500 py-3 rounded-xl mt-2"
+          className="w-full bg-orange-300 py-3 rounded-xl mt-2"
         >
           <Text className="text-center text-white font-semibold text-lg">
             Giriş Yap
