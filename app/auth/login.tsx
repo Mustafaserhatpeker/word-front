@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  ImageBackground,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { login } from "@/service/auth";
@@ -32,47 +33,53 @@ export default function LoginScreen() {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      className="flex-1 items-center justify-center bg-indigo-100 px-4"
+    <ImageBackground
+      source={require("../../assets/images/bg2.webp")}
+      style={{ flex: 1 }}
+      resizeMode="cover"
     >
-      <Text className="text-3xl font-bold text-center text-indigo-600 mb-6">
-        Kelime Oyunu
-      </Text>
-      <View className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
-        <Text className="text-lg font-medium mb-2 text-gray-700">
-          Kullanıcı Adı
+      <View
+        className="flex-1 place-items-center justify-center px-6"
+        style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)" }}
+      >
+        <Text className="text-3xl font-bold text-center text-white mb-6">
+          Kelime Oyunu
         </Text>
-        <TextInput
-          value={username}
-          onChangeText={setUsername}
-          placeholder="Bir kullanıcı adı girin"
-          className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
-        />
-        <TextInput
-          value={password}
-          onChangeText={setPassword}
-          placeholder="Şifre girin"
-          secureTextEntry={true}
-          className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
-        />
-        <TouchableOpacity
-          onPress={handleLogin}
-          className="w-full bg-indigo-500 py-3 rounded-xl mt-2"
-        >
-          <Text className="text-center text-white font-semibold text-lg">
-            Giriş Yap
+        <View className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
+          <Text className="text-lg font-medium mb-2 text-gray-700">
+            Kullanıcı Adı
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleRegister}
-          className="w-full bg-indigo-500 py-3 rounded-xl mt-2"
-        >
-          <Text className="text-center text-white font-semibold text-lg">
-            Üye Ol
-          </Text>
-        </TouchableOpacity>
+          <TextInput
+            value={username}
+            onChangeText={setUsername}
+            placeholder="Bir kullanıcı adı girin"
+            className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
+          />
+          <TextInput
+            value={password}
+            onChangeText={setPassword}
+            placeholder="Şifre girin"
+            secureTextEntry={true}
+            className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
+          />
+          <TouchableOpacity
+            onPress={handleLogin}
+            className="w-full bg-indigo-500 py-3 rounded-xl mt-2"
+          >
+            <Text className="text-center text-white font-semibold text-lg">
+              Giriş Yap
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleRegister}
+            className="w-full bg-indigo-500 py-3 rounded-xl mt-2"
+          >
+            <Text className="text-center text-white font-semibold text-lg">
+              Üye Ol
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }

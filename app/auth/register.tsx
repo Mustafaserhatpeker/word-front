@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  ImageBackground,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { register } from "@/service/auth";
@@ -73,44 +74,52 @@ export default function RegisterScreen() {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      className="flex-1 items-center justify-center bg-indigo-100 px-4"
+    <ImageBackground
+      source={require("../../assets/images/bg2.webp")}
+      style={{ flex: 1 }}
+      resizeMode="cover"
     >
-      <View className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
-        <Text className="text-3xl font-bold text-center text-indigo-600 mb-6">
+      <View
+        className="flex-1 place-items-center justify-center px-6"
+        style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)" }}
+      >
+        <Text className="text-3xl font-bold text-center text-white mb-6">
           Kayıt Ol
         </Text>
 
-        <Text className="text-lg font-medium mb-2 text-gray-700">E-posta</Text>
-        <TextInput
-          value={email}
-          onChangeText={setEmail}
-          placeholder="E-posta adresinizi girin"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
-        />
+        <View className="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
+          <Text className="text-lg font-medium mb-2 text-gray-700">
+            E-posta
+          </Text>
+          <TextInput
+            value={email}
+            onChangeText={setEmail}
+            placeholder="E-posta adresinizi girin"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
+          />
 
-        <Text className="text-lg font-medium mb-2 text-gray-700">
-          Kullanıcı Adı
-        </Text>
-        <TextInput
-          value={username}
-          onChangeText={setUsername}
-          placeholder="Bir kullanıcı adı seçin"
-          autoCapitalize="none"
-          className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
-        />
+          <Text className="text-lg font-medium mb-2 text-gray-700">
+            Kullanıcı Adı
+          </Text>
+          <TextInput
+            value={username}
+            onChangeText={setUsername}
+            placeholder="Bir kullanıcı adı seçin"
+            autoCapitalize="none"
+            className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
+          />
 
-        <Text className="text-lg font-medium mb-2 text-gray-700">Şifre</Text>
-        <TextInput
-          value={password}
-          onChangeText={setPassword}
-          placeholder="Bir şifre belirleyin"
-          secureTextEntry
-          className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
-        />
+          <Text className="text-lg font-medium mb-2 text-gray-700">Şifre</Text>
+          <TextInput
+            value={password}
+            onChangeText={setPassword}
+            placeholder="Bir şifre belirleyin"
+            secureTextEntry
+            className="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 text-base"
+          />
+        </View>
 
         <TouchableOpacity
           onPress={handleRegister}
@@ -129,6 +138,6 @@ export default function RegisterScreen() {
           </Text>
         </TouchableOpacity>
       </View>
-    </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }
