@@ -21,7 +21,7 @@ import bronzeIcon from "../../../assets/images/avatars/l1.png";
 import silverIcon from "../../../assets/images/avatars/l2.png";
 import goldIcon from "../../../assets/images/avatars/l3.png";
 import diamondIcon from "../../../assets/images/avatars/l4.png";
-import platinumIcon from "../../../assets/images/avatars/l5.png";
+import champIcon from "../../../assets/images/avatars/l5.png";
 import defaultIcon from "../../../assets/images/avatars/lno.png";
 
 export default function Home() {
@@ -38,7 +38,7 @@ export default function Home() {
     l2: silverIcon,
     l3: goldIcon,
     l4: diamondIcon,
-    l5: platinumIcon, // Platin ikonu için
+    l5: champIcon, // Platin ikonu için
     default: defaultIcon,
   };
 
@@ -65,24 +65,27 @@ export default function Home() {
       }
     };
 
-    setScore(100); // Skor örnek olarak 100 olarak ayarlanmış.
+    setScore(1200);
     if (score !== null) {
       console.log("Score:", score);
       if (score === 0) {
-        setLeague("Yerleştirilmedi");
+        setLeague("Ligi Yok");
         setLeagueIcon("default");
       } else if (score > 0 && score <= 199) {
+        setLeague("Bronz");
+        setLeagueIcon("l1");
+      } else if (score >= 200 && score <= 399) {
         setLeague("Gümüş");
         setLeagueIcon("l2");
-      } else if (score >= 200 && score <= 399) {
+      } else if (score >= 400 && score <= 599) {
         setLeague("Altın");
         setLeagueIcon("l3");
-      } else if (score >= 400 && score <= 599) {
-        setLeague("Platin");
-        setLeagueIcon("l5");
-      } else {
+      } else if (score >= 600 && score <= 799) {
         setLeague("Elmas");
         setLeagueIcon("l4");
+      } else if (score >= 800) {
+        setLeague("Şampiyon");
+        setLeagueIcon("l5");
       }
     }
 
@@ -177,7 +180,7 @@ export default function Home() {
                     resizeMode="contain"
                     alt="WorDox Skoru"
                   />
-                  <Text className="text-white align-middle font-bold text-2xl ml-2">
+                  <Text className="text-white align-middle font-bold text-2xl ml-2 mt-2">
                     {league}
                   </Text>
                 </View>
