@@ -1,21 +1,11 @@
-import { Button } from "@/components/ui/button";
-import { Center } from "@/components/ui/center";
-import { Divider } from "@/components/ui/divider";
-import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { useRouter } from "expo-router";
 import { logout } from "@/service/auth";
 import { getToken } from "@/utils/storage";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getUser } from "@/service/user";
 import { View } from "@/components/Themed";
-import {
-  ImageBackground,
-  KeyboardAvoidingView,
-  Platform,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { ImageBackground, TouchableOpacity, Image } from "react-native";
 import { Box } from "@/components/ui/box";
 
 // userData'nın tipi
@@ -66,9 +56,21 @@ export default function Home() {
       >
         <View
           style={{ backgroundColor: "#FDF6E8" }}
-          className="w-full max-w-md p-4 pt-2  border-b-2 border-orange-800 "
+          className="w-full max-w-md p-4 pt-0 flex flex-row align-middle  border-b-2 border-orange-800  "
         >
-          <Text className="text-lg  mb-2  text-orange-950 font-bold">
+          <Image
+            source={require("../../../assets/images/avatars/ma1.png")}
+            style={{
+              width: 50,
+              height: 50,
+              borderRadius: 10,
+
+              alignSelf: "flex-start",
+            }}
+            resizeMode="contain"
+            alt="WorDox Skoru"
+          ></Image>
+          <Text className="text-lg  ml-4 align-middle  text-orange-950 font-bold">
             Hoş Geldin {userData?.username}!
           </Text>
         </View>
@@ -77,20 +79,37 @@ export default function Home() {
           style={{ backgroundColor: "#FDF6E8" }}
           className="min-h-96  w-full max-w-md   "
         >
-          <View className="w-full flex flex-row justify-between items-center">
+          <View className="w-full flex flex-row justify-between items-center border-b-2 border-orange-800">
             <Box
-              className="p-4 w-1/2 flex flex-col "
+              className="p-4 w-1/2 flex flex-co h-full justify-start place-items-center border-r-2 border-orange-800"
               style={{ backgroundColor: "#E99B43" }}
             >
-              <Text className="text-white font-bold">WorDox Skoru</Text>
-              <Text>selam</Text>
+              <Text className="text-white  font-bold">WorDox Skoru</Text>
             </Box>
             <Box
-              className="p-4 w-1/2 flex flex-col "
+              className="p-4 w-1/2 flex flex-col h-full "
               style={{ backgroundColor: "#E99B43" }}
             >
-              <Text className="text-white font-bold">WorDox Ligi</Text>
-              <Text>selam</Text>
+              <Text className="text-white font-bold justify-self-end">
+                WorDox Ligi
+              </Text>
+              <View
+                className=" w-full flex flex-col justify-end place-items-end"
+                style={{ backgroundColor: "#E99B43" }}
+              >
+                <Image
+                  source={require("../../../assets/images/avatars/l1.png")}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    borderRadius: 10,
+                    marginTop: 10,
+                    alignSelf: "flex-start",
+                  }}
+                  resizeMode="contain"
+                  alt="WorDox Skoru"
+                ></Image>
+              </View>
             </Box>
           </View>
         </View>
