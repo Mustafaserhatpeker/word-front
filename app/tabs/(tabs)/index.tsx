@@ -21,7 +21,8 @@ import bronzeIcon from "../../../assets/images/avatars/l1.png";
 import silverIcon from "../../../assets/images/avatars/l2.png";
 import goldIcon from "../../../assets/images/avatars/l3.png";
 import diamondIcon from "../../../assets/images/avatars/l4.png";
-import champIcon from "../../../assets/images/avatars/l5.png";
+import masterIcon from "../../../assets/images/avatars/l5.png";
+import champIcon from "../../../assets/images/avatars/l6.png";
 import defaultIcon from "../../../assets/images/avatars/lno.png";
 
 export default function Home() {
@@ -38,7 +39,8 @@ export default function Home() {
     l2: silverIcon,
     l3: goldIcon,
     l4: diamondIcon,
-    l5: champIcon, // Platin ikonu için
+    l5: masterIcon,
+    l6: champIcon,
     default: defaultIcon,
   };
 
@@ -65,7 +67,7 @@ export default function Home() {
       }
     };
 
-    setScore(1200);
+    setScore(100);
     if (score !== null) {
       console.log("Score:", score);
       if (score === 0) {
@@ -83,9 +85,12 @@ export default function Home() {
       } else if (score >= 600 && score <= 799) {
         setLeague("Elmas");
         setLeagueIcon("l4");
-      } else if (score >= 800) {
-        setLeague("Şampiyon");
+      } else if (score >= 800 && score <= 1199) {
+        setLeague("Usta");
         setLeagueIcon("l5");
+      } else {
+        setLeague("Şampiyon");
+        setLeagueIcon("l6");
       }
     }
 
@@ -187,16 +192,17 @@ export default function Home() {
               </View>
             </Box>
           </View>
+          <View
+            style={{ backgroundColor: "#FDF6E8" }}
+            className="w-full flex flex-row justify-center items-center mt-4"
+          >
+            <TouchableOpacity className="w-4/5  bg-orange-300 py-3 rounded-xl mt-2">
+              <Text className="text-center text-white font-semibold text-lg">
+                Oyun Başlat
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-
-        <TouchableOpacity
-          onPress={handleLogout}
-          className="w-full bg-orange-300 py-3 rounded-xl mt-2"
-        >
-          <Text className="text-center text-white font-semibold text-lg">
-            Çıkış Yap
-          </Text>
-        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
