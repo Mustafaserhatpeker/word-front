@@ -381,7 +381,7 @@ export default function Home() {
                       VS
                     </Text>
                     <Image
-                      source={require("../../../assets/images/avatars/ma5.png")}
+                      source={require("../../../assets/images/avatars/wa2.png")}
                       style={{
                         width: 75,
                         height: 75,
