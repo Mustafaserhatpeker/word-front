@@ -4,11 +4,17 @@ import { logout } from "@/service/auth";
 import { getToken } from "@/utils/storage";
 import React, { useEffect, useState } from "react";
 import { getUser } from "@/service/user";
+import LottieView from "lottie-react-native";
 import { View } from "@/components/Themed";
-import { ImageBackground, TouchableOpacity, Image } from "react-native";
+import {
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { Box } from "@/components/ui/box";
 
-// userData'nın tipi
+// Tip
 type UserData = {
   _id: string;
   email: string;
@@ -16,7 +22,7 @@ type UserData = {
   __v: number;
 };
 
-// İmage importları
+// Image ve Scene importları
 import bronzeIcon from "../../../assets/images/avatars/l1.png";
 import silverIcon from "../../../assets/images/avatars/l2.png";
 import goldIcon from "../../../assets/images/avatars/l3.png";
@@ -24,6 +30,14 @@ import diamondIcon from "../../../assets/images/avatars/l4.png";
 import masterIcon from "../../../assets/images/avatars/l5.png";
 import champIcon from "../../../assets/images/avatars/l6.png";
 import defaultIcon from "../../../assets/images/avatars/lno.png";
+
+import l1scene from "../../../assets/scenes/l1.json";
+import l2scene from "../../../assets/scenes/l2.json";
+import l3scene from "../../../assets/scenes/l3.json";
+import l4scene from "../../../assets/scenes/l4.json";
+import l5scene from "../../../assets/scenes/l5.json";
+import l6scene from "../../../assets/scenes/l6.json";
+import { VStack } from "@/components/ui/vstack";
 
 export default function Home() {
   const router = useRouter();
@@ -44,12 +58,18 @@ export default function Home() {
     default: defaultIcon,
   };
 
-  const currentIcon = images[leagueIcon || "default"];
-
-  const handleLogout = async () => {
-    await logout();
-    router.replace("/auth/login");
+  const scenes: Record<string, any> = {
+    l1: l1scene,
+    l2: l2scene,
+    l3: l3scene,
+    l4: l4scene,
+    l5: l5scene,
+    l6: l6scene,
+    default: l1scene,
   };
+
+  const currentIcon = images[leagueIcon || "default"];
+  const currentScene = scenes[leagueIcon || "default"];
 
   useEffect(() => {
     const checkLoginStatus = async () => {
@@ -67,35 +87,36 @@ export default function Home() {
       }
     };
 
-    setScore(100);
-    if (score !== null) {
-      console.log("Score:", score);
-      if (score === 0) {
-        setLeague("Ligi Yok");
+    const calculateLeague = (userScore: number) => {
+      if (userScore === 0) {
+        setLeague("Yok");
         setLeagueIcon("default");
-      } else if (score > 0 && score <= 199) {
+      } else if (userScore > 0 && userScore <= 199) {
         setLeague("Bronz");
         setLeagueIcon("l1");
-      } else if (score >= 200 && score <= 399) {
+      } else if (userScore >= 200 && userScore <= 399) {
         setLeague("Gümüş");
         setLeagueIcon("l2");
-      } else if (score >= 400 && score <= 599) {
+      } else if (userScore >= 400 && userScore <= 599) {
         setLeague("Altın");
         setLeagueIcon("l3");
-      } else if (score >= 600 && score <= 799) {
+      } else if (userScore >= 600 && userScore <= 799) {
         setLeague("Elmas");
         setLeagueIcon("l4");
-      } else if (score >= 800 && score <= 1199) {
+      } else if (userScore >= 800 && userScore <= 1199) {
         setLeague("Usta");
         setLeagueIcon("l5");
       } else {
-        setLeague("Şampiyon");
+        setLeague("Titan");
         setLeagueIcon("l6");
       }
-    }
+    };
 
     checkLoginStatus();
-  }, [router, score]);
+    const exampleScore = 0; // örnek skor
+    setScore(exampleScore);
+    calculateLeague(exampleScore);
+  }, [router]);
 
   return (
     <ImageBackground
@@ -188,19 +209,43 @@ export default function Home() {
                   <Text className="text-white align-middle font-bold text-2xl ml-2 mt-2">
                     {league}
                   </Text>
+                  <LottieView
+                    source={currentScene}
+                    autoPlay
+                    loop
+                    style={{ width: 50, height: 50 }}
+                  />
                 </View>
               </View>
             </Box>
           </View>
           <View
             style={{ backgroundColor: "#FDF6E8" }}
-            className="w-full flex flex-row justify-center items-center mt-4"
+            className="w-full flex flex-col justify-center items-center mt-4"
           >
-            <TouchableOpacity className="w-4/5  bg-orange-300 py-3 rounded-xl mt-2">
+            <TouchableOpacity className="w-11/12  bg-orange-300 py-3 rounded-xl mt-2">
               <Text className="text-center text-white font-semibold text-lg">
                 Oyun Başlat
               </Text>
             </TouchableOpacity>
+            <ScrollView
+              style={{
+                backgroundColor: "#FDF6E8",
+                maxHeight: 428,
+              }} // max-h-96 = 384px
+              className="w-full mt-6"
+            >
+              <VStack space="xs" className="bg-secondary-400" reversed={false}>
+                <Box className=" flex flex-col justify-start p-4 h-40 w-full bg-orange-300  ">
+                  <Text className="text-white font-bold text-lg ">
+                    Sıra Sende
+                  </Text>
+                </Box>
+                <Box className="h-40 w-full bg-orange-300"></Box>
+                <Box className="h-40 w-full bg-orange-300"></Box>
+                <Box className="h-40 w-full bg-orange-300"></Box>
+              </VStack>
+            </ScrollView>
           </View>
         </View>
       </View>
