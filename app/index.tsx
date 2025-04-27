@@ -12,7 +12,7 @@ export default function Home() {
     const checkToken = async () => {
       const token = await getToken();
       if (token) {
-        router.replace("/tabs");
+        router.replace("/tabs/(tabs)/home");
       }
     };
     checkToken();

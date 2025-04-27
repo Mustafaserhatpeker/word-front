@@ -257,7 +257,7 @@ export default function Home() {
                 <Box className=" flex flex-col justify-start p-2 h-56 w-full bg-orange-400 rounded-xl  ">
                   <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
                     <Text className="text-white font-bold text-lg ">
-                      Hamle Sırası : {userData?.username} ' da
+                      Hamle Sırası Sende
                     </Text>
                     <Text className="text-white  text-lg ">
                       Kalan Süre :{" "}
@@ -305,7 +305,7 @@ export default function Home() {
                 <Box className=" flex flex-col justify-start p-2 h-56 w-full bg-orange-400 rounded-xl  ">
                   <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
                     <Text className="text-white font-bold text-lg ">
-                      Hamle Sırası : {userData?.username} ' da
+                      Hamle Sırası Rakipte
                     </Text>
                     <Text className="text-white  text-lg ">
                       Kalan Süre :{" "}
@@ -353,7 +353,7 @@ export default function Home() {
                 <Box className=" flex flex-col justify-start p-2 h-56 w-full bg-orange-400 rounded-xl  ">
                   <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
                     <Text className="text-white font-bold text-lg ">
-                      Hamle Sırası : {userData?.username} ' da
+                      Hamle Sırası Sende
                     </Text>
                     <Text className="text-white  text-lg ">
                       Kalan Süre :{" "}

@@ -17,7 +17,7 @@ export default function LoginScreen() {
     if (username.trim() !== "") {
       await login(username, password).then((response) => {
         if (response.status === "success") {
-          router.replace("/tabs");
+          router.replace("/tabs/(tabs)/home");
         }
       });
     } else {
@@ -33,7 +33,7 @@ export default function LoginScreen() {
     const checkToken = async () => {
       const token = await getToken();
       if (token) {
-        router.replace("/tabs");
+        router.replace("/tabs/(tabs)/home");
       }
     };
     checkToken();

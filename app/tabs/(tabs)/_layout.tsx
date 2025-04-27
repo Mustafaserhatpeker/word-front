@@ -18,7 +18,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
@@ -27,13 +27,6 @@ export default function TabLayout() {
 
       <Tabs.Screen
         name="tab1"
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color }) => <TabBarIcon name="star-o" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="tab2"
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="star-o" color={color} />,

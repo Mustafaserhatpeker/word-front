@@ -41,7 +41,7 @@ function RootLayoutNav() {
 
   return (
     <GluestackUIProvider mode={colorScheme === "dark" ? "dark" : "light"}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <ThemeProvider value={colorScheme === "light" ? DarkTheme : DefaultTheme}>
         <Slot />
       </ThemeProvider>
     </GluestackUIProvider>
