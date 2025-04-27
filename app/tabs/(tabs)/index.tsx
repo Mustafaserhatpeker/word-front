@@ -19,7 +19,8 @@ type UserData = {
 export default function Home() {
   const router = useRouter();
   const [userData, setUserData] = useState<UserData | null>(null);
-
+  const [score, setScore] = useState<number | null>(null);
+  const [league, setLeague] = useState<string | null>(null);
   const handleLogout = async () => {
     await logout();
     router.replace("/auth/login");
@@ -40,6 +41,9 @@ export default function Home() {
         }
       }
     };
+
+    setLeague("Bronz");
+    setScore(100);
 
     checkLoginStatus();
   }, [router]);
@@ -85,6 +89,26 @@ export default function Home() {
               style={{ backgroundColor: "#E99B43" }}
             >
               <Text className="text-white  font-bold">WorDox Skoru</Text>
+              <View
+                style={{ backgroundColor: "#E99B43" }}
+                className=" w-full flex flex-row justify-start place-items-center"
+              >
+                <Image
+                  source={require("../../../assets/images/avatars/w.png")}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    borderRadius: 10,
+                    marginTop: 10,
+                    alignSelf: "flex-start",
+                  }}
+                  resizeMode="contain"
+                  alt="WorDox Skoru"
+                ></Image>
+                <Text className="text-white  align-middle font-bold text-2xl mt-2">
+                  {score}
+                </Text>
+              </View>
             </Box>
             <Box
               className="p-4 w-1/2 flex flex-col h-full "
@@ -97,18 +121,26 @@ export default function Home() {
                 className=" w-full flex flex-col justify-end place-items-end"
                 style={{ backgroundColor: "#E99B43" }}
               >
-                <Image
-                  source={require("../../../assets/images/avatars/l1.png")}
-                  style={{
-                    width: 50,
-                    height: 50,
-                    borderRadius: 10,
-                    marginTop: 10,
-                    alignSelf: "flex-start",
-                  }}
-                  resizeMode="contain"
-                  alt="WorDox Skoru"
-                ></Image>
+                <View
+                  style={{ backgroundColor: "#E99B43" }}
+                  className=" w-full flex flex-row justify-start place-items-center"
+                >
+                  <Image
+                    source={require("../../../assets/images/avatars/l1.png")}
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 10,
+                      marginTop: 10,
+                      alignSelf: "flex-start",
+                    }}
+                    resizeMode="contain"
+                    alt="WorDox Skoru"
+                  ></Image>
+                  <Text className="text-white  align-middle font-bold text-2xl ">
+                    {league}
+                  </Text>
+                </View>
               </View>
             </Box>
           </View>
