@@ -16,11 +16,34 @@ type UserData = {
   __v: number;
 };
 
+// İmage importları
+import bronzeIcon from "../../../assets/images/avatars/l1.png";
+import silverIcon from "../../../assets/images/avatars/l2.png";
+import goldIcon from "../../../assets/images/avatars/l3.png";
+import diamondIcon from "../../../assets/images/avatars/l4.png";
+import platinumIcon from "../../../assets/images/avatars/l5.png";
+import defaultIcon from "../../../assets/images/avatars/lno.png";
+
 export default function Home() {
   const router = useRouter();
   const [userData, setUserData] = useState<UserData | null>(null);
   const [score, setScore] = useState<number | null>(null);
   const [league, setLeague] = useState<string | null>(null);
+  const [leagueIcon, setLeagueIcon] = useState<keyof typeof images | null>(
+    null
+  );
+
+  const images: Record<string, any> = {
+    l1: bronzeIcon,
+    l2: silverIcon,
+    l3: goldIcon,
+    l4: diamondIcon,
+    l5: platinumIcon, // Platin ikonu için
+    default: defaultIcon,
+  };
+
+  const currentIcon = images[leagueIcon || "default"];
+
   const handleLogout = async () => {
     await logout();
     router.replace("/auth/login");
@@ -42,11 +65,29 @@ export default function Home() {
       }
     };
 
-    setLeague("Bronz");
-    setScore(100);
+    setScore(100); // Skor örnek olarak 100 olarak ayarlanmış.
+    if (score !== null) {
+      console.log("Score:", score);
+      if (score === 0) {
+        setLeague("Yerleştirilmedi");
+        setLeagueIcon("default");
+      } else if (score > 0 && score <= 199) {
+        setLeague("Gümüş");
+        setLeagueIcon("l2");
+      } else if (score >= 200 && score <= 399) {
+        setLeague("Altın");
+        setLeagueIcon("l3");
+      } else if (score >= 400 && score <= 599) {
+        setLeague("Platin");
+        setLeagueIcon("l5");
+      } else {
+        setLeague("Elmas");
+        setLeagueIcon("l4");
+      }
+    }
 
     checkLoginStatus();
-  }, [router]);
+  }, [router, score]);
 
   return (
     <ImageBackground
@@ -55,7 +96,7 @@ export default function Home() {
       resizeMode="cover"
     >
       <View
-        className="flex-1 h-full  place-items-start justify-start  py-6 "
+        className="flex-1 h-full place-items-start justify-start py-6 "
         style={{ flex: 1, backgroundColor: "#FDF6E8" }}
       >
         <View
@@ -68,30 +109,29 @@ export default function Home() {
               width: 50,
               height: 50,
               borderRadius: 10,
-
               alignSelf: "flex-start",
             }}
             resizeMode="contain"
             alt="WorDox Skoru"
-          ></Image>
-          <Text className="text-lg  ml-4 align-middle  text-orange-950 font-bold">
+          />
+          <Text className="text-lg ml-4 align-middle text-orange-950 font-bold">
             Hoş Geldin {userData?.username}!
           </Text>
         </View>
 
         <View
           style={{ backgroundColor: "#FDF6E8" }}
-          className="min-h-96  w-full max-w-md   "
+          className="min-h-96 w-full max-w-md"
         >
           <View className="w-full flex flex-row justify-between items-center border-b-2 border-orange-800">
             <Box
               className="p-4 w-1/2 flex flex-co h-full justify-start place-items-center border-r-2 border-orange-800"
               style={{ backgroundColor: "#E99B43" }}
             >
-              <Text className="text-white  font-bold">WorDox Skoru</Text>
+              <Text className="text-white font-bold">WorDox Skoru</Text>
               <View
                 style={{ backgroundColor: "#E99B43" }}
-                className=" w-full flex flex-row justify-start place-items-center"
+                className="w-full flex flex-row justify-start place-items-center"
               >
                 <Image
                   source={require("../../../assets/images/avatars/w.png")}
@@ -104,29 +144,29 @@ export default function Home() {
                   }}
                   resizeMode="contain"
                   alt="WorDox Skoru"
-                ></Image>
-                <Text className="text-white  align-middle font-bold text-2xl mt-2">
+                />
+                <Text className="text-white align-middle font-bold text-2xl mt-2">
                   {score}
                 </Text>
               </View>
             </Box>
             <Box
-              className="p-4 w-1/2 flex flex-col h-full "
+              className="p-4 w-1/2 flex flex-col h-full"
               style={{ backgroundColor: "#E99B43" }}
             >
               <Text className="text-white font-bold justify-self-end">
                 WorDox Ligi
               </Text>
               <View
-                className=" w-full flex flex-col justify-end place-items-end"
+                className="w-full flex flex-col justify-end place-items-end"
                 style={{ backgroundColor: "#E99B43" }}
               >
                 <View
                   style={{ backgroundColor: "#E99B43" }}
-                  className=" w-full flex flex-row justify-start place-items-center"
+                  className="w-full flex flex-row justify-start place-items-center"
                 >
                   <Image
-                    source={require("../../../assets/images/avatars/l1.png")}
+                    source={currentIcon}
                     style={{
                       width: 50,
                       height: 50,
@@ -136,8 +176,8 @@ export default function Home() {
                     }}
                     resizeMode="contain"
                     alt="WorDox Skoru"
-                  ></Image>
-                  <Text className="text-white  align-middle font-bold text-2xl ">
+                  />
+                  <Text className="text-white align-middle font-bold text-2xl ml-2">
                     {league}
                   </Text>
                 </View>
