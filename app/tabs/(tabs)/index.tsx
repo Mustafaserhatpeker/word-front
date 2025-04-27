@@ -28,7 +28,7 @@ type UserData = {
 
 export default function Home() {
   const router = useRouter();
-  const [userData, setUserData] = useState<UserData | null>(null); // userData tipi ayarlandı
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   const handleLogout = async () => {
     await logout();
@@ -37,12 +37,12 @@ export default function Home() {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      const token = await getToken(); // getToken, async bir fonksiyon olabilir
+      const token = await getToken();
       if (!token) {
         router.replace("/auth/login");
       } else {
         try {
-          const response = await getUser(); // getUser, userData döndürüyor
+          const response = await getUser();
           setUserData(response.data);
         } catch (error) {
           console.error("Error fetching user data:", error);
