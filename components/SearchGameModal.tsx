@@ -23,10 +23,10 @@ export default function SearchGameModal({
   const [selectedGameType, setSelectedGameType] = useState<string | null>(null);
 
   const gameTypes = [
-    { label: "2 dak. Hızlı Oyun", value: "2min" },
-    { label: "5 dak. Hızlı Oyun", value: "5min" },
-    { label: "12 saat Geniş Oyun", value: "12hour" },
-    { label: "24 saat Geniş Oyun", value: "24hour" },
+    { label: "2 dak. Çarpışma!", value: "2min" },
+    { label: "5 dak. Muharebe!", value: "5min" },
+    { label: "12 saat Savaş!", value: "12hour" },
+    { label: "24 saat Soğuk Savaş!", value: "24hour" },
   ];
 
   return (
@@ -71,6 +71,7 @@ export default function SearchGameModal({
           </ModalBody>
           <ModalFooter>
             <Button
+              className="bg-background-200"
               variant="outline"
               action="secondary"
               onPress={() => {
@@ -80,6 +81,7 @@ export default function SearchGameModal({
               <ButtonText>İptal</ButtonText>
             </Button>
             <Button
+              className="bg-orange-600"
               onPress={() => {
                 if (selectedGameType) {
                   console.log("Seçilen Müsabaka Türü:", selectedGameType);
@@ -91,7 +93,7 @@ export default function SearchGameModal({
               }}
               isDisabled={!selectedGameType}
             >
-              <ButtonText>Başla</ButtonText>
+              <ButtonText className="text-typography-white">Başla</ButtonText>
             </Button>
           </ModalFooter>
         </ModalContent>
