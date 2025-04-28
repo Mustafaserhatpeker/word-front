@@ -83,6 +83,7 @@ export default function SearchGameModal({
               onPress={() => {
                 if (selectedGameType) {
                   console.log("Seçilen Müsabaka Türü:", selectedGameType);
+                  setSelectedGameType(null);
                 } else {
                   console.log("Hiçbir müsabaka türü seçilmedi.");
                 }
