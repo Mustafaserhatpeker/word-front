@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { getUser } from "@/service/user";
 import LottieView from "lottie-react-native";
 import { View } from "@/components/Themed";
+import SearchGameModal from "@/components/SearchGameModal";
 import {
   ImageBackground,
   Image,
@@ -72,7 +73,7 @@ export default function Home() {
   const currentIcon = images[leagueIcon || "default"];
   const currentScene = scenes[leagueIcon || "default"];
   const [loading, setLoading] = useState(true);
-
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
@@ -87,7 +88,7 @@ export default function Home() {
         console.error("Error during login check:", error);
         router.replace("/auth/login");
       } finally {
-        setLoading(false); // Hata da olsa doğru da olsa loading'i kapat
+        setLoading(false);
       }
     };
 
@@ -235,7 +236,12 @@ export default function Home() {
             style={{ backgroundColor: "#FDF6E8" }}
             className="w-full flex flex-col justify-center items-center mt-4 px-2"
           >
-            <TouchableOpacity className="w-full  bg-orange-300 py-3 rounded-xl mt-2">
+            <TouchableOpacity
+              onPress={() => {
+                setShowModal(true);
+              }}
+              className="w-full  bg-orange-300 py-3 rounded-xl mt-2"
+            >
               <Text className="text-center text-white font-semibold text-lg">
                 Oyun Başlat
               </Text>
@@ -403,6 +409,7 @@ export default function Home() {
           </View>
         </View>
       </View>
+      <SearchGameModal showModal={showModal} setShowModal={setShowModal} />
     </ImageBackground>
   );
 }

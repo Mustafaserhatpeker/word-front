@@ -23,9 +23,6 @@ export default function SearchGameModal({
 }) {
   return (
     <Center className="h-[300px]">
-      <Button onPress={() => setShowModal(true)}>
-        <ButtonText>Show Modal</ButtonText>
-      </Button>
       <Modal
         isOpen={showModal}
         onClose={() => {
@@ -37,7 +34,7 @@ export default function SearchGameModal({
         <ModalContent>
           <ModalHeader>
             <Heading size="md" className="text-typography-950">
-              Invite your team
+              Oyun Başlat
             </Heading>
             <ModalCloseButton>
               <Icon
@@ -48,11 +45,28 @@ export default function SearchGameModal({
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
-            <Text size="sm" className="text-typography-500">
-              Elevate user interactions with our versatile modals. Seamlessly
-              integrate notifications, forms, and media displays. Make an impact
-              effortlessly.
-            </Text>
+            <Button className="m-2 bg-orange-400 ">
+              <ButtonText className="text-white font-bold">
+                2 dak. Hızlı Oyun
+              </ButtonText>
+            </Button>
+
+            <Button className="m-2 bg-orange-400">
+              <ButtonText className="text-white font-bold">
+                5 dak. Hızlı Oyun
+              </ButtonText>
+            </Button>
+
+            <Button className="m-2 bg-orange-400">
+              <ButtonText className="text-white font-bold">
+                12 saat Geniş Oyun
+              </ButtonText>
+            </Button>
+            <Button className="m-2 bg-orange-400">
+              <ButtonText className="text-white font-bold">
+                24 saat Geniş Oyun
+              </ButtonText>
+            </Button>
           </ModalBody>
           <ModalFooter>
             <Button
@@ -62,14 +76,14 @@ export default function SearchGameModal({
                 setShowModal(false);
               }}
             >
-              <ButtonText>Cancel</ButtonText>
+              <ButtonText>İptal</ButtonText>
             </Button>
             <Button
               onPress={() => {
                 setShowModal(false);
               }}
             >
-              <ButtonText>Explore</ButtonText>
+              <ButtonText>Başla</ButtonText>
             </Button>
           </ModalFooter>
         </ModalContent>
