@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/modal";
 import { Icon, CloseIcon } from "@/components/ui/icon";
 import React, { useState } from "react";
+import { router } from "expo-router";
 
 export default function SearchGameModal({
   showModal,
@@ -85,6 +86,7 @@ export default function SearchGameModal({
               onPress={() => {
                 if (selectedGameType) {
                   console.log("Seçilen Müsabaka Türü:", selectedGameType);
+                  router.push("/game/gamescreen");
                   setSelectedGameType(null);
                 } else {
                   console.log("Hiçbir müsabaka türü seçilmedi.");

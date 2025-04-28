@@ -240,7 +240,7 @@ export default function Home() {
               onPress={() => {
                 setShowModal(true);
               }}
-              className="w-full  bg-orange-300 py-3 rounded-xl mt-2"
+              className="w-full  bg-orange-500 py-3 rounded-xl mt-2"
             >
               <Text className="text-center text-white font-semibold text-lg">
                 Oyun Başlat
