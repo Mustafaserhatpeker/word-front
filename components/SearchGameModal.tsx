@@ -10,9 +10,8 @@ import {
   ModalBody,
   ModalFooter,
 } from "@/components/ui/modal";
-import { Text } from "@/components/ui/text";
 import { Icon, CloseIcon } from "@/components/ui/icon";
-import React from "react";
+import React, { useState } from "react";
 
 export default function SearchGameModal({
   showModal,
@@ -21,6 +20,15 @@ export default function SearchGameModal({
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const [selectedGameType, setSelectedGameType] = useState<string | null>(null);
+
+  const gameTypes = [
+    { label: "2 dak. Hızlı Oyun", value: "2min" },
+    { label: "5 dak. Hızlı Oyun", value: "5min" },
+    { label: "12 saat Geniş Oyun", value: "12hour" },
+    { label: "24 saat Geniş Oyun", value: "24hour" },
+  ];
+
   return (
     <Center className="h-[300px]">
       <Modal
@@ -31,10 +39,10 @@ export default function SearchGameModal({
         size="md"
       >
         <ModalBackdrop />
-        <ModalContent>
+        <ModalContent style={{ backgroundColor: "white" }}>
           <ModalHeader>
-            <Heading size="md" className="text-typography-950">
-              Oyun Başlat
+            <Heading size="md" className="ml-2 text-orange-500">
+              WordoX Müsabakası
             </Heading>
             <ModalCloseButton>
               <Icon
@@ -45,28 +53,21 @@ export default function SearchGameModal({
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
-            <Button className="m-2 bg-orange-400 ">
-              <ButtonText className="text-white font-bold">
-                2 dak. Hızlı Oyun
-              </ButtonText>
-            </Button>
-
-            <Button className="m-2 bg-orange-400">
-              <ButtonText className="text-white font-bold">
-                5 dak. Hızlı Oyun
-              </ButtonText>
-            </Button>
-
-            <Button className="m-2 bg-orange-400">
-              <ButtonText className="text-white font-bold">
-                12 saat Geniş Oyun
-              </ButtonText>
-            </Button>
-            <Button className="m-2 bg-orange-400">
-              <ButtonText className="text-white font-bold">
-                24 saat Geniş Oyun
-              </ButtonText>
-            </Button>
+            {gameTypes.map((game) => (
+              <Button
+                key={game.value}
+                className={`m-2 ${
+                  selectedGameType === game.value
+                    ? "bg-orange-600"
+                    : "bg-orange-400"
+                }`}
+                onPress={() => setSelectedGameType(game.value)}
+              >
+                <ButtonText className="text-white font-bold">
+                  {game.label}
+                </ButtonText>
+              </Button>
+            ))}
           </ModalBody>
           <ModalFooter>
             <Button
@@ -80,8 +81,14 @@ export default function SearchGameModal({
             </Button>
             <Button
               onPress={() => {
+                if (selectedGameType) {
+                  console.log("Seçilen Müsabaka Türü:", selectedGameType);
+                } else {
+                  console.log("Hiçbir müsabaka türü seçilmedi.");
+                }
                 setShowModal(false);
               }}
+              isDisabled={!selectedGameType}
             >
               <ButtonText>Başla</ButtonText>
             </Button>
