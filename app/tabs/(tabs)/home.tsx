@@ -1,6 +1,6 @@
 import { Text } from "@/components/ui/text";
 import { useRouter } from "expo-router";
-import { logout } from "@/service/auth";
+
 import { getToken } from "@/utils/storage";
 import React, { useEffect, useState } from "react";
 import { getUser } from "@/service/user";
@@ -38,6 +38,7 @@ import l3scene from "../../../assets/scenes/l3.json";
 import l4scene from "../../../assets/scenes/l4.json";
 import l5scene from "../../../assets/scenes/l5.json";
 import l6scene from "../../../assets/scenes/l6.json";
+import vsscene from "../../../assets/scenes/vs.json";
 import { VStack } from "@/components/ui/vstack";
 import { Button } from "@/components/ui/button";
 
@@ -260,7 +261,7 @@ export default function Home() {
                 space="xs"
                 reversed={false}
               >
-                <Box className=" flex flex-col justify-start p-2 h-56 w-full bg-orange-400 rounded-xl  ">
+                <Box className=" flex flex-col justify-start p-2 h-72 w-full bg-orange-400 rounded-xl  ">
                   <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
                     <Text className="text-white font-bold text-lg ">
                       Hamle Sırası Sende
@@ -272,7 +273,7 @@ export default function Home() {
                       </Text>
                     </Text>
                   </Box>
-                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
+                  <Box className="flex flex-row justify-center gap-16 items-center p-2 rounded-xl ">
                     <Image
                       source={require("../../../assets/images/avatars/ma1.png")}
                       style={{
@@ -284,12 +285,30 @@ export default function Home() {
                       resizeMode="contain"
                       alt="user avatar"
                     />
-                    <Text
-                      className="text-white font-extrabold text-3xl "
-                      style={{ alignSelf: "center" }}
-                    >
-                      VS
-                    </Text>
+                    <View style={{ backgroundColor: "transparent" }}>
+                      <LottieView
+                        source={vsscene}
+                        autoPlay
+                        loop
+                        style={{
+                          width: 60,
+                          height: 60,
+                          position: "relative",
+                        }}
+                      />
+                      <Text
+                        style={{
+                          position: "absolute",
+                          color: "red",
+                          fontWeight: "bold",
+                          fontSize: 12,
+                          top: 20,
+                          left: 22,
+                        }}
+                      >
+                        VS
+                      </Text>
+                    </View>
                     <Image
                       source={require("../../../assets/images/avatars/ma4.png")}
                       style={{
@@ -302,102 +321,70 @@ export default function Home() {
                       alt="user avatar"
                     />
                   </Box>
-                  <Button className="w-full bg-orange-300 rounded-xl mt-2">
-                    <Text className="text-white font-bold text-lg ">
-                      Hamle Yap
-                    </Text>
-                  </Button>
-                </Box>
-                <Box className=" flex flex-col justify-start p-2 h-56 w-full bg-orange-400 rounded-xl  ">
-                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
-                    <Text className="text-white font-bold text-lg ">
-                      Hamle Sırası Rakipte
-                    </Text>
-                    <Text className="text-white  text-lg ">
-                      Kalan Süre :{" "}
-                      <Text className="text-white font-bold text-lg">
-                        00:00
-                      </Text>
-                    </Text>
-                  </Box>
-                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
-                    <Image
-                      source={require("../../../assets/images/avatars/ma1.png")}
-                      style={{
-                        width: 75,
-                        height: 75,
-                        borderRadius: 10,
-                        alignSelf: "flex-start",
-                      }}
-                      resizeMode="contain"
-                      alt="user avatar"
-                    />
-                    <Text
-                      className="text-white font-extrabold text-3xl "
-                      style={{ alignSelf: "center" }}
+                  <View
+                    style={{ backgroundColor: "transparent" }}
+                    className=" rounded-xl p-2 flex flex-row justify-between items-center "
+                  >
+                    <View
+                      style={{ backgroundColor: "transparent" }}
+                      className="flex flex-col justify-start items-center"
                     >
-                      VS
-                    </Text>
-                    <Image
-                      source={require("../../../assets/images/avatars/ma7.png")}
-                      style={{
-                        width: 75,
-                        height: 75,
-                        borderRadius: 10,
-                        alignSelf: "flex-start",
-                      }}
-                      resizeMode="contain"
-                      alt="user avatar"
-                    />
-                  </Box>
-                  <Button className="w-full bg-orange-300 rounded-xl mt-2">
-                    <Text className="text-white font-bold text-lg ">
-                      Hamle Yap
-                    </Text>
-                  </Button>
-                </Box>
-                <Box className=" flex flex-col justify-start p-2 h-56 w-full bg-orange-400 rounded-xl  ">
-                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
-                    <Text className="text-white font-bold text-lg ">
-                      Hamle Sırası Sende
-                    </Text>
-                    <Text className="text-white  text-lg ">
-                      Kalan Süre :{" "}
-                      <Text className="text-white font-bold text-lg">
-                        00:00
+                      <Text className="text-white font-extrabold ">
+                        {userData?.username}
                       </Text>
-                    </Text>
-                  </Box>
-                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
-                    <Image
-                      source={require("../../../assets/images/avatars/ma1.png")}
-                      style={{
-                        width: 75,
-                        height: 75,
-                        borderRadius: 10,
-                        alignSelf: "flex-start",
-                      }}
-                      resizeMode="contain"
-                      alt="user avatar"
-                    />
-                    <Text
-                      className="text-white font-extrabold text-3xl "
-                      style={{ alignSelf: "center" }}
+                      <View
+                        style={{ backgroundColor: "transparent" }}
+                        className=" w-full flex flex-row justify-start items-center"
+                      >
+                        <Text className="text-white font-extrabold text-lg text-start">
+                          120
+                        </Text>
+                        <Image
+                          source={require("../../../assets/images/avatars/w.png")}
+                          style={{
+                            width: 20,
+                            height: 20,
+                            borderRadius: 10,
+                            marginTop: 4,
+
+                            alignSelf: "flex-start",
+                          }}
+                          resizeMode="contain"
+                          alt="WorDox Skoru"
+                        />
+                      </View>
+                    </View>
+
+                    <View
+                      style={{ backgroundColor: "transparent" }}
+                      className="flex flex-col justify-start items-center"
                     >
-                      VS
-                    </Text>
-                    <Image
-                      source={require("../../../assets/images/avatars/wa2.png")}
-                      style={{
-                        width: 75,
-                        height: 75,
-                        borderRadius: 10,
-                        alignSelf: "flex-start",
-                      }}
-                      resizeMode="contain"
-                      alt="user avatar"
-                    />
-                  </Box>
+                      <Text className="text-white font-extrabold ">
+                        Uzaylı Adam
+                      </Text>
+                      <View
+                        style={{ backgroundColor: "transparent" }}
+                        className=" w-full flex flex-row justify-start items-start"
+                      >
+                        <Text className="text-white font-extrabold text-lg text-start">
+                          120
+                        </Text>
+                        <Image
+                          source={require("../../../assets/images/avatars/w.png")}
+                          style={{
+                            width: 20,
+                            height: 20,
+                            borderRadius: 10,
+                            marginTop: 4,
+
+                            alignSelf: "flex-start",
+                          }}
+                          resizeMode="contain"
+                          alt="WorDox Skoru"
+                        />
+                      </View>
+                    </View>
+                  </View>
                   <Button className="w-full bg-orange-300 rounded-xl mt-2">
                     <Text className="text-white font-bold text-lg ">
                       Hamle Yap
