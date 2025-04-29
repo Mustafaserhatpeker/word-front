@@ -436,7 +436,7 @@ export default function Home() {
                       </Text>
                     </View>
                     <Image
-                      source={require("../../../assets/images/avatars/ma4.png")}
+                      source={require("../../../assets/images/avatars/ma6.png")}
                       style={{
                         width: 75,
                         height: 75,
@@ -486,7 +486,7 @@ export default function Home() {
                       className="flex flex-col justify-start items-center"
                     >
                       <Text className="text-white font-extrabold ">
-                        Uzaylı Adam
+                        Hacker Man
                       </Text>
                       <View
                         style={{ backgroundColor: "transparent" }}
@@ -520,7 +520,7 @@ export default function Home() {
                 <Box className=" flex flex-col justify-start p-2 h-72 w-full bg-orange-400 rounded-xl  ">
                   <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
                     <Text className="text-white font-bold text-lg ">
-                      Hamle Sırası Sende
+                      Hamle Sırası Rakipte
                     </Text>
                     <Text className="text-white  text-lg ">
                       Kalan Süre :{" "}
@@ -566,7 +566,7 @@ export default function Home() {
                       </Text>
                     </View>
                     <Image
-                      source={require("../../../assets/images/avatars/ma4.png")}
+                      source={require("../../../assets/images/avatars/wa2.png")}
                       style={{
                         width: 75,
                         height: 75,
@@ -616,7 +616,7 @@ export default function Home() {
                       className="flex flex-col justify-start items-center"
                     >
                       <Text className="text-white font-extrabold ">
-                        Uzaylı Adam
+                        Dünyalı Kadın
                       </Text>
                       <View
                         style={{ backgroundColor: "transparent" }}
