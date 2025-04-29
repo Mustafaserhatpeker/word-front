@@ -502,7 +502,6 @@ export default function Home() {
                             height: 20,
                             borderRadius: 10,
                             marginTop: 4,
-
                             alignSelf: "flex-start",
                           }}
                           resizeMode="contain"
