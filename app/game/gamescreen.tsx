@@ -15,13 +15,12 @@ export default function GameScreen() {
     for (let i = 0; i < 15; i++) {
       const row: string[] = [];
       for (let j = 0; j < 15; j++) {
-        // %30 şansla bir harf koy, %70 boş bırak
         if (Math.random() < 0.3) {
           const randomLetter =
             letters[Math.floor(Math.random() * letters.length)];
           row.push(randomLetter);
         } else {
-          row.push(""); // boş buton
+          row.push("");
         }
       }
       newMatrix.push(row);
