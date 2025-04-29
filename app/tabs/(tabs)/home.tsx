@@ -133,11 +133,7 @@ export default function Home() {
   }
 
   return (
-    <ImageBackground
-      source={require("../../../assets/images/r8.png")}
-      style={{ flex: 1 }}
-      resizeMode="cover"
-    >
+    <View style={{ flex: 1, backgroundColor: "#FDF6E8" }}>
       <View
         className="flex-1 h-full place-items-start justify-start py-8 "
         style={{ flex: 1, backgroundColor: "#FDF6E8" }}
@@ -235,7 +231,7 @@ export default function Home() {
           </View>
           <View
             style={{ backgroundColor: "#FDF6E8" }}
-            className="w-full flex flex-col justify-center items-center mt-4 px-2"
+            className="w-full flex flex-col justify-center items-center mt-2 px-2"
           >
             <TouchableOpacity
               onPress={() => {
@@ -657,6 +653,6 @@ export default function Home() {
         </View>
       </View>
       <SearchGameModal showModal={showModal} setShowModal={setShowModal} />
-    </ImageBackground>
+    </View>
   );
 }
