@@ -139,7 +139,7 @@ export default function Home() {
       resizeMode="cover"
     >
       <View
-        className="flex-1 h-full place-items-start justify-start py-6 "
+        className="flex-1 h-full place-items-start justify-start py-8 "
         style={{ flex: 1, backgroundColor: "#FDF6E8" }}
       >
         <View
@@ -166,9 +166,9 @@ export default function Home() {
           style={{ backgroundColor: "#FDF6E8" }}
           className="min-h-96 w-full max-w-md"
         >
-          <View className="w-full flex flex-row justify-between items-center border-b-2 border-orange-800">
+          <View className="w-full flex flex-row justify-between items-center">
             <Box
-              className="p-4 w-1/2 flex flex-co h-full justify-start place-items-center border-r-2 border-orange-800"
+              className="p-4 w-1/2 flex flex-co h-full justify-start place-items-center "
               style={{ backgroundColor: "#E99B43" }}
             >
               <Text className="text-white font-bold">WorDox Skoru</Text>
@@ -261,6 +261,266 @@ export default function Home() {
                 space="xs"
                 reversed={false}
               >
+                <Box className=" flex flex-col justify-start p-2 h-72 w-full bg-orange-400 rounded-xl  ">
+                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
+                    <Text className="text-white font-bold text-lg ">
+                      Hamle Sırası Sende
+                    </Text>
+                    <Text className="text-white  text-lg ">
+                      Kalan Süre :{" "}
+                      <Text className="text-white font-bold text-lg">
+                        00:00
+                      </Text>
+                    </Text>
+                  </Box>
+                  <Box className="flex flex-row justify-center gap-16 items-center p-2 rounded-xl ">
+                    <Image
+                      source={require("../../../assets/images/avatars/ma1.png")}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 10,
+                        alignSelf: "flex-start",
+                      }}
+                      resizeMode="contain"
+                      alt="user avatar"
+                    />
+                    <View style={{ backgroundColor: "transparent" }}>
+                      <LottieView
+                        source={vsscene}
+                        autoPlay
+                        loop
+                        style={{
+                          width: 60,
+                          height: 60,
+                          position: "relative",
+                        }}
+                      />
+                      <Text
+                        style={{
+                          position: "absolute",
+                          color: "red",
+                          fontWeight: "bold",
+                          fontSize: 12,
+                          top: 20,
+                          left: 22,
+                        }}
+                      >
+                        VS
+                      </Text>
+                    </View>
+                    <Image
+                      source={require("../../../assets/images/avatars/ma4.png")}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 10,
+                        alignSelf: "flex-start",
+                      }}
+                      resizeMode="contain"
+                      alt="user avatar"
+                    />
+                  </Box>
+                  <View
+                    style={{ backgroundColor: "transparent" }}
+                    className=" rounded-xl p-2 flex flex-row justify-between items-center "
+                  >
+                    <View
+                      style={{ backgroundColor: "transparent" }}
+                      className="flex flex-col justify-start items-center"
+                    >
+                      <Text className="text-white font-extrabold ">
+                        {userData?.username}
+                      </Text>
+                      <View
+                        style={{ backgroundColor: "transparent" }}
+                        className=" w-full flex flex-row justify-start items-center"
+                      >
+                        <Text className="text-white font-extrabold text-lg text-start">
+                          120
+                        </Text>
+                        <Image
+                          source={require("../../../assets/images/avatars/w.png")}
+                          style={{
+                            width: 20,
+                            height: 20,
+                            borderRadius: 10,
+                            marginTop: 4,
+
+                            alignSelf: "flex-start",
+                          }}
+                          resizeMode="contain"
+                          alt="WorDox Skoru"
+                        />
+                      </View>
+                    </View>
+
+                    <View
+                      style={{ backgroundColor: "transparent" }}
+                      className="flex flex-col justify-start items-center"
+                    >
+                      <Text className="text-white font-extrabold ">
+                        Uzaylı Adam
+                      </Text>
+                      <View
+                        style={{ backgroundColor: "transparent" }}
+                        className=" w-full flex flex-row justify-start items-start"
+                      >
+                        <Text className="text-white font-extrabold text-lg text-start">
+                          120
+                        </Text>
+                        <Image
+                          source={require("../../../assets/images/avatars/w.png")}
+                          style={{
+                            width: 20,
+                            height: 20,
+                            borderRadius: 10,
+                            marginTop: 4,
+
+                            alignSelf: "flex-start",
+                          }}
+                          resizeMode="contain"
+                          alt="WorDox Skoru"
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <Button className="w-full bg-orange-300 rounded-xl mt-2">
+                    <Text className="text-white font-bold text-lg ">
+                      Hamle Yap
+                    </Text>
+                  </Button>
+                </Box>
+                <Box className=" flex flex-col justify-start p-2 h-72 w-full bg-orange-400 rounded-xl  ">
+                  <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
+                    <Text className="text-white font-bold text-lg ">
+                      Hamle Sırası Sende
+                    </Text>
+                    <Text className="text-white  text-lg ">
+                      Kalan Süre :{" "}
+                      <Text className="text-white font-bold text-lg">
+                        00:00
+                      </Text>
+                    </Text>
+                  </Box>
+                  <Box className="flex flex-row justify-center gap-16 items-center p-2 rounded-xl ">
+                    <Image
+                      source={require("../../../assets/images/avatars/ma1.png")}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 10,
+                        alignSelf: "flex-start",
+                      }}
+                      resizeMode="contain"
+                      alt="user avatar"
+                    />
+                    <View style={{ backgroundColor: "transparent" }}>
+                      <LottieView
+                        source={vsscene}
+                        autoPlay
+                        loop
+                        style={{
+                          width: 60,
+                          height: 60,
+                          position: "relative",
+                        }}
+                      />
+                      <Text
+                        style={{
+                          position: "absolute",
+                          color: "red",
+                          fontWeight: "bold",
+                          fontSize: 12,
+                          top: 20,
+                          left: 22,
+                        }}
+                      >
+                        VS
+                      </Text>
+                    </View>
+                    <Image
+                      source={require("../../../assets/images/avatars/ma4.png")}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 10,
+                        alignSelf: "flex-start",
+                      }}
+                      resizeMode="contain"
+                      alt="user avatar"
+                    />
+                  </Box>
+                  <View
+                    style={{ backgroundColor: "transparent" }}
+                    className=" rounded-xl p-2 flex flex-row justify-between items-center "
+                  >
+                    <View
+                      style={{ backgroundColor: "transparent" }}
+                      className="flex flex-col justify-start items-center"
+                    >
+                      <Text className="text-white font-extrabold ">
+                        {userData?.username}
+                      </Text>
+                      <View
+                        style={{ backgroundColor: "transparent" }}
+                        className=" w-full flex flex-row justify-start items-center"
+                      >
+                        <Text className="text-white font-extrabold text-lg text-start">
+                          120
+                        </Text>
+                        <Image
+                          source={require("../../../assets/images/avatars/w.png")}
+                          style={{
+                            width: 20,
+                            height: 20,
+                            borderRadius: 10,
+                            marginTop: 4,
+
+                            alignSelf: "flex-start",
+                          }}
+                          resizeMode="contain"
+                          alt="WorDox Skoru"
+                        />
+                      </View>
+                    </View>
+
+                    <View
+                      style={{ backgroundColor: "transparent" }}
+                      className="flex flex-col justify-start items-center"
+                    >
+                      <Text className="text-white font-extrabold ">
+                        Uzaylı Adam
+                      </Text>
+                      <View
+                        style={{ backgroundColor: "transparent" }}
+                        className=" w-full flex flex-row justify-start items-start"
+                      >
+                        <Text className="text-white font-extrabold text-lg text-start">
+                          120
+                        </Text>
+                        <Image
+                          source={require("../../../assets/images/avatars/w.png")}
+                          style={{
+                            width: 20,
+                            height: 20,
+                            borderRadius: 10,
+                            marginTop: 4,
+
+                            alignSelf: "flex-start",
+                          }}
+                          resizeMode="contain"
+                          alt="WorDox Skoru"
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <Button className="w-full bg-orange-300 rounded-xl mt-2">
+                    <Text className="text-white font-bold text-lg ">
+                      Hamle Yap
+                    </Text>
+                  </Button>
+                </Box>
                 <Box className=" flex flex-col justify-start p-2 h-72 w-full bg-orange-400 rounded-xl  ">
                   <Box className="flex flex-row justify-between items-center p-2 rounded-xl ">
                     <Text className="text-white font-bold text-lg ">
