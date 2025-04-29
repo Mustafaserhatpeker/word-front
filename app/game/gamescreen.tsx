@@ -40,7 +40,7 @@ export default function GameScreen() {
             {row.map((cell, cellIndex) => (
               <GameButton
                 key={cellIndex}
-                TopLeftText={cell}
+                TopLeftText={cellIndex.toString()}
                 MiddleText={cell}
               />
             ))}
