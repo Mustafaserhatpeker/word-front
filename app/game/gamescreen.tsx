@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity, View, Text, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
+import GameButton from "@/components/GameButton";
 
 export default function GameScreen() {
   const [matrix, setMatrix] = useState<string[][]>([]);
@@ -37,22 +38,11 @@ export default function GameScreen() {
         {matrix.map((row, rowIndex) => (
           <View key={rowIndex} style={{ flexDirection: "row" }}>
             {row.map((cell, cellIndex) => (
-              <TouchableOpacity
+              <GameButton
                 key={cellIndex}
-                style={{
-                  width: 20,
-                  height: 20,
-                  margin: 1,
-                  backgroundColor: "#f0f0f0",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 4,
-                  borderWidth: 1,
-                  borderColor: "#ccc",
-                }}
-              >
-                <Text style={{ fontSize: 12 }}>{cell}</Text>
-              </TouchableOpacity>
+                TopLeftText={cell}
+                MiddleText={cell}
+              />
             ))}
           </View>
         ))}
