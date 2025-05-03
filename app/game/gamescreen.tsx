@@ -51,6 +51,34 @@ const letterData = [
   { letter: "H", points: 2, position: { x: 9, y: 14 } },
   { letter: "S", points: 0, position: { x: 7, y: 7 } },
 ];
+const colorMap = new Map<string, string>();
+const colorPalette = [
+  "#f94144",
+  "#f3722c",
+  "#f8961e",
+  "#f9844a",
+  "#f9c74f",
+  "#90be6d",
+  "#43aa8b",
+  "#577590",
+  "#277da1",
+  "#4d908e",
+  "#b5838d",
+  "#6a4c93",
+];
+
+let colorIndex = 0;
+
+const getColorForKey = (letter: string, points: number | null): string => {
+  if (letter === "" || points === null) return "#ccc";
+
+  const key = `${letter}-${points}`;
+  if (!colorMap.has(key)) {
+    colorMap.set(key, colorPalette[colorIndex % colorPalette.length]);
+    colorIndex++;
+  }
+  return colorMap.get(key)!;
+};
 
 export default function GameScreen() {
   const [matrix, setMatrix] = useState<
@@ -93,6 +121,7 @@ export default function GameScreen() {
                 key={cellIndex}
                 TopLeftText={cell.points !== null ? cell.points.toString() : ""}
                 MiddleText={cell.letter}
+                backgroundColor={getColorForKey(cell.letter, cell.points)}
               />
             ))}
           </View>

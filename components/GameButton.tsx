@@ -4,9 +4,11 @@ import { Text } from "@/components/ui/text";
 function GameButton({
   TopLeftText,
   MiddleText,
+  backgroundColor,
 }: {
   TopLeftText: string;
   MiddleText: string;
+  backgroundColor: string;
 }) {
   return (
     <TouchableOpacity
@@ -16,9 +18,9 @@ function GameButton({
         margin: 1,
         position: "relative",
         borderRadius: 4,
-        backgroundColor: "orange",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor,
       }}
     >
       <Text
