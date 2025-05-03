@@ -1,0 +1,29 @@
+{
+  "letters": [
+    {
+      "letter": "H",
+      "points": 3,
+      "position": { "x": 0, "y": 0 }
+    },
+    {
+      "letter": "H",
+      "points": 3,
+      "position": { "x": 12, "y": 12 }
+    },
+    {
+      "letter": "H",
+      "points": 2,
+      "position": { "x": 5, "y": 8 }
+    },
+    {
+      "letter": "K",
+      "points": 4,
+      "position": { "x": 3, "y": 7 }
+    },
+    {
+      "letter": "K",
+      "points": 5,
+      "position": { "x": 10, "y": 1 }
+    }
+  ]
+}
