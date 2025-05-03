@@ -95,12 +95,11 @@ export default function GameScreen() {
     for (let i = 0; i < 15; i++) {
       const row = [];
       for (let j = 0; j < 15; j++) {
-        row.push({ letter: "", points: null }); // başlangıçta boş
+        row.push({ letter: "", points: null });
       }
       newMatrix.push(row);
     }
 
-    // JSON verisindeki harfleri yerleştir
     for (const item of letterData) {
       const { x, y } = item.position;
       newMatrix[y][x] = { letter: item.letter, points: item.points };
