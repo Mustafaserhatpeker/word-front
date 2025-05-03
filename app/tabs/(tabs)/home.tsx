@@ -7,12 +7,7 @@ import { getUser } from "@/service/user";
 import LottieView from "lottie-react-native";
 import { View } from "@/components/Themed";
 import SearchGameModal from "@/components/SearchGameModal";
-import {
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { Image, TouchableOpacity, ScrollView } from "react-native";
 import { Box } from "@/components/ui/box";
 
 // Tip
@@ -119,7 +114,7 @@ export default function Home() {
     };
 
     checkLoginStatus();
-    const exampleScore = 1200; // örnek skor
+    const exampleScore = 1200;
     setScore(exampleScore);
     calculateLeague(exampleScore);
   }, [router]);

@@ -1,4 +1,4 @@
-export const BASE_URL = "http://10.33.10.202:5001/api";
+export const BASE_URL = "http://10.40.193.86:5001/api";
 
 export const endpoints = {
   login: `${BASE_URL}/auth/login`,
