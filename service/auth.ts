@@ -1,8 +1,8 @@
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { endpoints } from "@/constants/urls/apiUrl";
 import { removeToken, saveToken } from "@/utils/storage";
-import { rem } from "react-native-css-interop";
+
 // Giriş Fonksiyonu
 export const login = async (email: string, password: string) => {
   try {
