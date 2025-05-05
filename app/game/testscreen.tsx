@@ -10,7 +10,10 @@ import {
 import io, { Socket } from "socket.io-client";
 import { SOCKET_URL } from "@/constants/urls/apiUrl";
 import { getToken } from "@/utils/storage";
-
+import { HStack } from "@/components/ui/hstack";
+import { Box } from "@/components/ui/box";
+import { Button } from "@/components/ui/button";
+import Entypo from "@expo/vector-icons/Entypo";
 export default function TestScreen() {
   const socketRef = useRef<Socket | null>(null);
   const [messageLog, setMessageLog] = useState<string[]>([]);
@@ -136,18 +139,6 @@ export default function TestScreen() {
         </>
       ) : (
         <>
-          <TouchableOpacity
-            onPress={handleOpenModal}
-            className="bg-blue-500 px-6 py-3 rounded-xl mb-4"
-          >
-            <Text className="text-white font-semibold">Kelime Gir</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleLeaveRoom}
-            className="bg-red-500 px-6 py-3 rounded-xl mb-4"
-          >
-            <Text className="text-white font-semibold">Odadan Ayrıl</Text>
-          </TouchableOpacity>
           <ScrollView className="flex-1 w-full px-4">
             {messageLog.map((msg, index) => (
               <Text key={index} className="text-lg text-gray-800 my-1">
@@ -155,6 +146,35 @@ export default function TestScreen() {
               </Text>
             ))}
           </ScrollView>
+          <View className="absolute bottom-0 left-0 right-0 bg-white p-4 flex flex-col justify-between">
+            <View className="flex flex-row items-center justify-between w-full h-18 bg-gray-100 p-2 rounded-lg  mb-4">
+              <TouchableOpacity
+                onPress={handleOpenModal}
+                className="bg-blue-500 px-6 py-3 rounded-xl "
+              >
+                <Text className="text-white font-semibold">Kelime Gir</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={handleLeaveRoom}
+                className="bg-red-500 px-6 py-3 rounded-xl "
+              >
+                <Text className="text-white font-semibold">Odadan Ayrıl</Text>
+              </TouchableOpacity>
+            </View>
+            <HStack space="md" reversed={false}>
+              <Box className="h-20 w-20 bg-red-100 rounded-lg" />
+              <Box className="h-20 w-20 bg-red-100 rounded-lg" />
+              <Box className="h-20 w-20 bg-red-100 rounded-lg" />
+              <Box className="h-20 w-20 bg-red-100 rounded-lg" />
+              <Box className="h-20 w-20 bg-red-100 rounded-lg" />
+            </HStack>
+            <View className="flex flex-row  items-center justify-between pt-2  w-full h-16 bg-orange-100 mt-4 p-2 rounded-lg">
+              <Button className="bg-orange-400">
+                <Entypo name="controller-play" size={24} color="black" />
+              </Button>
+            </View>
+          </View>
         </>
       )}
 
