@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
-  Modal,
 } from "react-native";
 import io, { Socket } from "socket.io-client";
 import { SOCKET_URL } from "@/constants/urls/apiUrl";
@@ -15,21 +14,34 @@ import { Box } from "@/components/ui/box";
 import { Button } from "@/components/ui/button";
 import Entypo from "@expo/vector-icons/Entypo";
 
-function generateRandomLetter() {
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  return letters[Math.floor(Math.random() * letters.length)];
+function generateRandomLettersWithVowels(count = 7, minVowels = 2) {
+  const vowels = "AEIİOÖUÜ";
+  const consonants = "BCÇDFGĞHJKLMNPRSŞTVYZ";
+
+  const selectedVowels = Array.from(
+    { length: minVowels },
+    () => vowels[Math.floor(Math.random() * vowels.length)]
+  );
+
+  const remainingLetters = Array.from(
+    { length: count - minVowels },
+    () => consonants[Math.floor(Math.random() * consonants.length)]
+  );
+
+  const allLetters = [...selectedVowels, ...remainingLetters];
+  return allLetters.sort(() => Math.random() - 0.5);
 }
 
 export default function TestScreen() {
   const socketRef = useRef<Socket | null>(null);
   const [messageLog, setMessageLog] = useState<string[]>([]);
-  const [roomId, setRoomId] = useState<string>(""); // Oda ID'si için state
+  const [roomId, setRoomId] = useState<string>("");
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [currentRoom, setCurrentRoom] = useState<string | null>(null);
-  const [inputWord, setInputWord] = useState<string>(""); // Kullanıcının girdiği kelime
-  const [isWaiting, setIsWaiting] = useState<boolean>(false); // Bekleme durumu
+  const [inputWord, setInputWord] = useState<string>("");
+  const [isWaiting, setIsWaiting] = useState<boolean>(false);
   const [randomLetters, setRandomLetters] = useState<string[]>(
-    Array.from({ length: 7 }, () => generateRandomLetter())
+    generateRandomLettersWithVowels(7, 2)
   );
 
   useEffect(() => {
