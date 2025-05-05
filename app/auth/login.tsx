@@ -14,6 +14,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const handleLogin = async () => {
+    console.log("Giriş Yapma İşlemi");
     if (username.trim() !== "") {
       await login(username, password).then((response) => {
         if (response.status === "success") {
