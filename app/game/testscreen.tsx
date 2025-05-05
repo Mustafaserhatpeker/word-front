@@ -14,6 +14,12 @@ import { HStack } from "@/components/ui/hstack";
 import { Box } from "@/components/ui/box";
 import { Button } from "@/components/ui/button";
 import Entypo from "@expo/vector-icons/Entypo";
+
+function generateRandomLetter() {
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  return letters[Math.floor(Math.random() * letters.length)];
+}
+
 export default function TestScreen() {
   const socketRef = useRef<Socket | null>(null);
   const [messageLog, setMessageLog] = useState<string[]>([]);
@@ -23,6 +29,9 @@ export default function TestScreen() {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false); // Modal görünürlüğü
   const [inputWord, setInputWord] = useState<string>(""); // Kullanıcının girdiği kelime
   const [isWaiting, setIsWaiting] = useState<boolean>(false); // Bekleme durumu
+  const [randomLetters, setRandomLetters] = useState<string[]>(
+    Array.from({ length: 5 }, () => generateRandomLetter())
+  );
 
   useEffect(() => {
     const initializeSocket = async () => {
@@ -115,6 +124,10 @@ export default function TestScreen() {
     }
   };
 
+  const handleLetterPress = (letter: string) => {
+    setInputWord((prevWord) => prevWord + letter); // Basılan harfi kelimeye ekle
+  };
+
   return (
     <View className="flex-1 items-center justify-center bg-white px-4">
       {!currentRoom ? (
@@ -162,61 +175,31 @@ export default function TestScreen() {
               </TouchableOpacity>
             </View>
             <HStack space="md" reversed={false}>
-              {Array.from({ length: 5 }, (_, index) => (
-                <Box
+              {randomLetters.map((letter, index) => (
+                <TouchableOpacity
                   key={index}
-                  className="bg-orange-500 w-20 h-20 rounded-lg items-center justify-center"
+                  onPress={() => handleLetterPress(letter)}
                 >
-                  <Text className="text-orange-900 text-3xl font-semibold">
-                    {index + 1}
-                  </Text>
-                </Box>
+                  <Box className="bg-orange-500 w-16 h-16 rounded-lg items-center justify-center">
+                    <Text className="text-orange-900 text-3xl font-semibold">
+                      {letter}
+                    </Text>
+                  </Box>
+                </TouchableOpacity>
               ))}
             </HStack>
             <View className="flex flex-row  items-center justify-start  gap-2  w-full h-20 bg-orange-200 mt-4 p-2 rounded-lg">
               <Button
-                onPress={handleOpenModal}
+                onPress={handleSendWord}
                 className="bg-orange-500 rounded-lg w-16 h-16 items-center justify-center"
               >
                 <Entypo name="controller-play" size={24} color="white" />
               </Button>
-              <Text className="text-gray-500 text-sm mt-2">Kelime</Text>
+              <Text className="text-gray-500 text-sm mt-2">{inputWord}</Text>
             </View>
           </View>
         </>
       )}
-
-      {/* Modal */}
-      <Modal
-        visible={isModalVisible}
-        transparent={true}
-        animationType="slide"
-        onRequestClose={() => setIsModalVisible(false)}
-      >
-        <View className="flex-1 items-center justify-center bg-black bg-opacity-50">
-          <View className="bg-white w-3/4 p-6 rounded-lg shadow-lg">
-            <Text className="text-lg font-semibold mb-4">Bir Kelime Girin</Text>
-            <TextInput
-              value={inputWord}
-              onChangeText={setInputWord}
-              placeholder="Kelimenizi yazın"
-              className="border border-gray-300 rounded-lg px-4 py-2 mb-4"
-            />
-            <TouchableOpacity
-              onPress={handleSendWord}
-              className="bg-blue-500 px-6 py-3 rounded-xl mb-4"
-            >
-              <Text className="text-white font-semibold">Tamam</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => setIsModalVisible(false)}
-              className="bg-gray-500 px-6 py-3 rounded-xl"
-            >
-              <Text className="text-white font-semibold">İptal</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
     </View>
   );
 }
