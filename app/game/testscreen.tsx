@@ -19,6 +19,7 @@ export default function TestScreen() {
   const [currentRoom, setCurrentRoom] = useState<string | null>(null);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false); // Modal görünürlüğü
   const [inputWord, setInputWord] = useState<string>(""); // Kullanıcının girdiği kelime
+  const [isWaiting, setIsWaiting] = useState<boolean>(false); // Bekleme durumu
 
   useEffect(() => {
     const initializeSocket = async () => {
@@ -44,14 +45,20 @@ export default function TestScreen() {
 
       socketRef.current.on("roomHistory", (history: string[]) => {
         setMessageLog(history); // Oda geçmişini güncelle
+        setIsWaiting(false); // Bekleme durumunu kaldır
+      });
+
+      socketRef.current.on("systemMessage", (data: string) => {
+        setMessageLog((prevLog) => [...prevLog, data]);
       });
 
       socketRef.current.on("wordResponse", (data: string) => {
         setMessageLog((prevLog) => [...prevLog, data]);
       });
 
-      socketRef.current.on("systemMessage", (data: string) => {
-        setMessageLog((prevLog) => [...prevLog, data]);
+      socketRef.current.on("waiting", (message: string) => {
+        setIsWaiting(true); // Bekleme durumunu etkinleştir
+        setMessageLog([message]); // Bekleme mesajını güncelle
       });
 
       socketRef.current.on("unauthorized", () => {
@@ -84,6 +91,7 @@ export default function TestScreen() {
       socketRef.current?.emit("leaveRoom", currentRoom);
       setMessageLog([]);
       setCurrentRoom(null);
+      setIsWaiting(false); // Bekleme durumunu sıfırla
     }
   };
 
@@ -120,6 +128,11 @@ export default function TestScreen() {
           >
             <Text className="text-white font-semibold">Odaya Katıl</Text>
           </TouchableOpacity>
+          {isWaiting && (
+            <Text className="text-blue-500 font-semibold">
+              Diğer kullanıcı bekleniyor...
+            </Text>
+          )}
         </>
       ) : (
         <>
