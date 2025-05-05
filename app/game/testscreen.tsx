@@ -156,27 +156,27 @@ export default function TestScreen() {
               </TouchableOpacity>
             </View>
             <HStack space="md" reversed={false}>
-              <Box className="h-20 w-20 bg-slate-400 rounded-lg flex flex-col items-center justify-center">
+              <Box className="h-20 w-20 bg-orange-400 rounded-lg flex flex-col items-center justify-center">
                 <Text className="text-4xl font-extrabold text-orange-900">
                   A
                 </Text>
               </Box>
-              <Box className="h-20 w-20 bg-slate-400 rounded-lg flex flex-col items-center justify-center">
+              <Box className="h-20 w-20 bg-orange-400 rounded-lg flex flex-col items-center justify-center">
                 <Text className="text-4xl font-extrabold text-orange-900">
                   A
                 </Text>
               </Box>
-              <Box className="h-20 w-20 bg-slate-400 rounded-lg flex flex-col items-center justify-center">
+              <Box className="h-20 w-20 bg-orange-400 rounded-lg flex flex-col items-center justify-center">
                 <Text className="text-4xl font-extrabold text-orange-900">
                   A
                 </Text>
               </Box>
-              <Box className="h-20 w-20 bg-slate-400 rounded-lg flex flex-col items-center justify-center">
+              <Box className="h-20 w-20 bg-orange-400 rounded-lg flex flex-col items-center justify-center">
                 <Text className="text-4xl font-extrabold text-orange-900">
                   A
                 </Text>
               </Box>
-              <Box className="h-20 w-20 bg-slate-400 rounded-lg flex flex-col items-center justify-center">
+              <Box className="h-20 w-20 bg-orange-400 rounded-lg flex flex-col items-center justify-center">
                 <Text className="text-4xl font-extrabold text-orange-900">
                   A
                 </Text>
@@ -187,7 +187,7 @@ export default function TestScreen() {
                 onPress={handleOpenModal}
                 className="bg-orange-400 rounded-lg"
               >
-                <Entypo name="controller-play" size={24} color="black" />
+                <Entypo name="controller-play" size={24} color="white" />
               </Button>
             </View>
           </View>
