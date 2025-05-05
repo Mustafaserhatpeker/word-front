@@ -26,11 +26,10 @@ export default function TestScreen() {
   const [roomId, setRoomId] = useState<string>(""); // Oda ID'si için state
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [currentRoom, setCurrentRoom] = useState<string | null>(null);
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false); // Modal görünürlüğü
   const [inputWord, setInputWord] = useState<string>(""); // Kullanıcının girdiği kelime
   const [isWaiting, setIsWaiting] = useState<boolean>(false); // Bekleme durumu
   const [randomLetters, setRandomLetters] = useState<string[]>(
-    Array.from({ length: 5 }, () => generateRandomLetter())
+    Array.from({ length: 7 }, () => generateRandomLetter())
   );
 
   useEffect(() => {
@@ -94,8 +93,10 @@ export default function TestScreen() {
       return;
     }
 
+    const timerDuration = 0.5;
+
     setCurrentRoom(roomId);
-    socketRef.current?.emit("joinRoom", roomId);
+    socketRef.current?.emit("joinRoom", { roomId, timerDuration });
   };
 
   const handleLeaveRoom = () => {
@@ -107,17 +108,13 @@ export default function TestScreen() {
     }
   };
 
-  const handleOpenModal = () => {
-    setIsModalVisible(true); // Modal aç
-  };
-
   const handleSendWord = () => {
     if (currentRoom && inputWord) {
       socketRef.current?.emit("sendWord", {
         roomId: currentRoom,
         word: inputWord,
       });
-      setIsModalVisible(false); // Modal kapat
+
       setInputWord(""); // Girdi alanını temizle
     } else {
       setMessageLog(["Lütfen bir kelime girin ve odaya katılın."]);
@@ -180,7 +177,7 @@ export default function TestScreen() {
                   key={index}
                   onPress={() => handleLetterPress(letter)}
                 >
-                  <Box className="bg-orange-500 w-16 h-16 rounded-lg items-center justify-center">
+                  <Box className="bg-orange-500 w-10 h-10 rounded-lg items-center justify-center">
                     <Text className="text-orange-900 text-3xl font-semibold">
                       {letter}
                     </Text>
