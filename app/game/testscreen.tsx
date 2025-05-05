@@ -10,6 +10,10 @@ import io, { Socket } from "socket.io-client";
 import { SOCKET_URL } from "@/constants/urls/apiUrl";
 import { getToken } from "@/utils/storage";
 import { jwtDecode } from "jwt-decode";
+import { HStack } from "@/components/ui/hstack";
+import { Box } from "@/components/ui/box";
+import colors from "tailwindcss/colors";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function TestScreen() {
   const socketRef = useRef<Socket | null>(null);
@@ -157,7 +161,8 @@ export default function TestScreen() {
           </TouchableOpacity>
           {isWaiting && (
             <Text className="text-blue-500 font-semibold">
-              Diğer kullanıcı bekleniyor...
+              Diğer kullanıcı bekleniyor
+              <Spinner color={colors.amber[600]} />
             </Text>
           )}
         </>
@@ -179,7 +184,8 @@ export default function TestScreen() {
                 </Text>
               ) : (
                 <Text className="text-gray-600 font-semibold">
-                  Bekleniyor... Sıra: {activePlayer || "Bilinmiyor"}
+                  Sıra: {activePlayer || "Bilinmiyor"}
+                  <Spinner color={colors.amber[600]} />
                 </Text>
               )}
             </View>
@@ -199,12 +205,11 @@ export default function TestScreen() {
               </TouchableOpacity>
             </View>
 
-            <TextInput
-              value={inputWord}
-              onChangeText={setInputWord}
-              placeholder="Kelimenizi yazın"
-              className="border border-gray-300 rounded-lg px-4 py-2 mb-2"
-            />
+            <HStack space="md" reversed={false}>
+              <Box className="h-20 w-20 bg-primary-300" />
+              <Box className="h-20 w-20 bg-primary-400" />
+              <Box className="h-20 w-20 bg-primary-500" />
+            </HStack>
             <TouchableOpacity
               onPress={handleSendWord}
               className="bg-green-500 px-4 py-3 rounded-xl"
