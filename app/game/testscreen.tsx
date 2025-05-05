@@ -150,45 +150,37 @@ export default function TestScreen() {
             <View className="flex flex-row items-center justify-start gap-2 w-full h-18  rounded-lg  mb-4">
               <TouchableOpacity
                 onPress={handleLeaveRoom}
-                className="bg-red-500 px-6 py-3 rounded-xl "
+                className="bg-orange-500 px-6 py-3 rounded-xl "
               >
                 <Text className="text-white font-semibold">Odadan Ayrıl</Text>
               </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleLeaveRoom}
+                className="bg-red-500 px-6 py-3 rounded-xl "
+              >
+                <Text className="text-white font-semibold">Teslim Ol</Text>
+              </TouchableOpacity>
             </View>
             <HStack space="md" reversed={false}>
-              <Box className="h-20 w-20 bg-orange-400 rounded-lg flex flex-col items-center justify-center">
-                <Text className="text-4xl font-extrabold text-orange-900">
-                  A
-                </Text>
-              </Box>
-              <Box className="h-20 w-20 bg-orange-400 rounded-lg flex flex-col items-center justify-center">
-                <Text className="text-4xl font-extrabold text-orange-900">
-                  A
-                </Text>
-              </Box>
-              <Box className="h-20 w-20 bg-orange-400 rounded-lg flex flex-col items-center justify-center">
-                <Text className="text-4xl font-extrabold text-orange-900">
-                  A
-                </Text>
-              </Box>
-              <Box className="h-20 w-20 bg-orange-400 rounded-lg flex flex-col items-center justify-center">
-                <Text className="text-4xl font-extrabold text-orange-900">
-                  A
-                </Text>
-              </Box>
-              <Box className="h-20 w-20 bg-orange-400 rounded-lg flex flex-col items-center justify-center">
-                <Text className="text-4xl font-extrabold text-orange-900">
-                  A
-                </Text>
-              </Box>
+              {Array.from({ length: 5 }, (_, index) => (
+                <Box
+                  key={index}
+                  className="bg-orange-500 w-20 h-20 rounded-lg items-center justify-center"
+                >
+                  <Text className="text-orange-900 text-3xl font-semibold">
+                    {index + 1}
+                  </Text>
+                </Box>
+              ))}
             </HStack>
-            <View className="flex flex-row  items-center justify-between pt-2  w-full h-16 bg-orange-100 mt-4 p-2 rounded-lg">
+            <View className="flex flex-row  items-center justify-start  gap-2  w-full h-20 bg-orange-200 mt-4 p-2 rounded-lg">
               <Button
                 onPress={handleOpenModal}
-                className="bg-orange-400 rounded-lg"
+                className="bg-orange-500 rounded-lg w-16 h-16 items-center justify-center"
               >
                 <Entypo name="controller-play" size={24} color="white" />
               </Button>
+              <Text className="text-gray-500 text-sm mt-2">Kelime</Text>
             </View>
           </View>
         </>
