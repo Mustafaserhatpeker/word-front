@@ -1,5 +1,5 @@
-export const BASE_URL = "http://192.168.87.219:5001/api";
-export const SOCKET_URL = "http://192.168.87.219:5001";
+export const BASE_URL = "http://10.33.10.202:5001/api";
+export const SOCKET_URL = "http://10.33.10.202:5001";
 export const endpoints = {
   login: `${BASE_URL}/auth/login`,
   register: `${BASE_URL}/auth/register`,
