@@ -147,14 +147,7 @@ export default function TestScreen() {
             ))}
           </ScrollView>
           <View className="absolute bottom-0 left-0 right-0 bg-white p-4 flex flex-col justify-between">
-            <View className="flex flex-row items-center justify-between w-full h-18 bg-gray-100 p-2 rounded-lg  mb-4">
-              <TouchableOpacity
-                onPress={handleOpenModal}
-                className="bg-blue-500 px-6 py-3 rounded-xl "
-              >
-                <Text className="text-white font-semibold">Kelime Gir</Text>
-              </TouchableOpacity>
-
+            <View className="flex flex-row items-center justify-start gap-2 w-full h-18  rounded-lg  mb-4">
               <TouchableOpacity
                 onPress={handleLeaveRoom}
                 className="bg-red-500 px-6 py-3 rounded-xl "
@@ -170,7 +163,7 @@ export default function TestScreen() {
               <Box className="h-20 w-20 bg-red-100 rounded-lg" />
             </HStack>
             <View className="flex flex-row  items-center justify-between pt-2  w-full h-16 bg-orange-100 mt-4 p-2 rounded-lg">
-              <Button className="bg-orange-400">
+              <Button onPress={handleOpenModal} className="bg-orange-400">
                 <Entypo name="controller-play" size={24} color="black" />
               </Button>
             </View>
