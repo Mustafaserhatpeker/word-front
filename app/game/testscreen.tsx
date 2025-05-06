@@ -49,7 +49,7 @@ export default function TestScreen() {
   const [inputWord, setInputWord] = useState<string>("");
   const [isWaiting, setIsWaiting] = useState<boolean>(false);
   const [remainingTime, setRemainingTime] = useState(0);
-  const [timerDuration, setTimerDuration] = useState(30 * 60); // default 2 dk
+  const [timerDuration, setTimerDuration] = useState(30 * 60);
   const [activePlayer, setActivePlayer] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
   const [selectedButtons, setSelectedButtons] = useState<
@@ -57,7 +57,7 @@ export default function TestScreen() {
   >([]);
 
   const [randomLetters, setRandomLetters] = useState<string[]>(
-    generateRandomLettersWithVowels(7, 2) // 7 harf, en az 2 sesli harf
+    generateRandomLettersWithVowels(7, 2)
   );
   const [matrix, setMatrix] = useState<
     { letter: string; points: number | null }[][]
