@@ -52,6 +52,10 @@ export default function TestScreen() {
   const [timerDuration, setTimerDuration] = useState(30 * 60); // default 2 dk
   const [activePlayer, setActivePlayer] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
+  const [selectedButtons, setSelectedButtons] = useState<
+    { row: number; col: number }[]
+  >([]);
+
   const [randomLetters, setRandomLetters] = useState<string[]>(
     generateRandomLettersWithVowels(7, 2) // 7 harf, en az 2 sesli harf
   );
@@ -80,6 +84,39 @@ export default function TestScreen() {
   }
   const handleLetterPress = (letter: string) => {
     setInputWord((prevWord) => prevWord + letter); // Basılan harfi kelimeye ekle
+  };
+  const handleMatrixButtonPress = (row: number, col: number) => {
+    const isSelected = selectedButtons.some(
+      (b) => b.row === row && b.col === col
+    );
+
+    if (isSelected) {
+      // Seçimi iptal et
+      setSelectedButtons((prev) =>
+        prev.filter((b) => !(b.row === row && b.col === col))
+      );
+      return;
+    }
+
+    if (selectedButtons.length === 0) {
+      setSelectedButtons([{ row, col }]);
+      return;
+    }
+
+    const last = selectedButtons[selectedButtons.length - 1];
+    const rowDiff = Math.abs(row - last.row);
+    const colDiff = Math.abs(col - last.col);
+
+    const isAdjacent = rowDiff <= 1 && colDiff <= 1;
+
+    if (!isAdjacent) {
+      alert("Yalnızca komşu butonları seçebilirsiniz!");
+      return;
+    }
+
+    if (selectedButtons.length < inputWord.length) {
+      setSelectedButtons((prev) => [...prev, { row, col }]);
+    }
   };
 
   useEffect(() => {
@@ -192,11 +229,28 @@ export default function TestScreen() {
 
   const handleSendWord = () => {
     if (!currentRoom || !inputWord) return;
+
+    if (selectedButtons.length !== inputWord.length) {
+      alert("Kelime uzunluğu kadar komşu buton seçmelisiniz!");
+      return;
+    }
+
+    const newMatrix = [...matrix];
+    selectedButtons.forEach((pos, index) => {
+      newMatrix[pos.row][pos.col] = {
+        letter: inputWord[index],
+        points: inputWord.length, // her harf için kelime uzunluğu kadar puan
+      };
+    });
+
+    setMatrix(newMatrix);
     socketRef.current?.emit("sendWord", {
       roomId: currentRoom,
       word: inputWord,
     });
+
     setInputWord("");
+    setSelectedButtons([]);
   };
 
   return (
@@ -245,6 +299,21 @@ export default function TestScreen() {
                       }
                       MiddleText={cell.letter}
                       backgroundColor={getColorForKey(cell.letter, cell.points)}
+                      onPress={() =>
+                        handleMatrixButtonPress(rowIndex, cellIndex)
+                      }
+                      style={{
+                        borderWidth: selectedButtons.some(
+                          (b) => b.row === rowIndex && b.col === cellIndex
+                        )
+                          ? 2
+                          : 0,
+                        borderColor: selectedButtons.some(
+                          (b) => b.row === rowIndex && b.col === cellIndex
+                        )
+                          ? "green"
+                          : "transparent",
+                      }}
                     />
                   ))}
                 </View>

@@ -5,23 +5,31 @@ function GameButton({
   TopLeftText,
   MiddleText,
   backgroundColor,
+  onPress,
+  style,
 }: {
   TopLeftText: string;
   MiddleText: string;
   backgroundColor: string;
+  onPress: () => void;
+  style?: object;
 }) {
   return (
     <TouchableOpacity
-      style={{
-        width: 22,
-        height: 22,
-        margin: 1,
-        position: "relative",
-        borderRadius: 4,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor,
-      }}
+      onPress={onPress}
+      style={[
+        {
+          width: 22,
+          height: 22,
+          margin: 1,
+          position: "relative",
+          borderRadius: 4,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor,
+        },
+        style, // dışarıdan gelen stil
+      ]}
     >
       <Text
         style={{
