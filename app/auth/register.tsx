@@ -39,20 +39,19 @@ export default function RegisterScreen() {
       return;
     }
 
-    // Geçerli bir e-posta formatı kontrolü
-    // if (!validateEmail(email)) {
-    //   Alert.alert("Hata", "Geçerli bir e-posta adresi girin.");
-    //   return;
-    // }
+    if (!validateEmail(email)) {
+      Alert.alert("Hata", "Geçerli bir e-posta adresi girin.");
+      return;
+    }
 
-    // // Şifre doğrulama
-    // if (!validatePassword(password)) {
-    //   Alert.alert(
-    //     "Hata",
-    //     "Şifre en az 8 karakter olmalı, bir büyük harf, bir küçük harf ve bir noktalama işareti içermelidir."
-    //   );
-    //   return;
-    // }
+    // Şifre doğrulama
+    if (!validatePassword(password)) {
+      Alert.alert(
+        "Hata",
+        "Şifre en az 8 karakter olmalı, bir büyük harf, bir küçük harf ve bir noktalama işareti içermelidir."
+      );
+      return;
+    }
 
     register(email, username, password)
       .then((response) => {
