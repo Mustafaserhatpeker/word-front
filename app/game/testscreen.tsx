@@ -278,11 +278,20 @@ export default function TestScreen() {
       ) : (
         <>
           <ScrollView className="flex-1 w-full px-4 ">
-            {messageLog.map((msg, i) => (
-              <Text key={i} className="text-lg text-gray-800 my-1">
-                {msg}
-              </Text>
-            ))}
+            <ScrollView
+              horizontal
+              className="flex-row w-full mb-4 h-16"
+              contentContainerStyle={{
+                paddingHorizontal: 10,
+                paddingVertical: 5,
+              }}
+            >
+              {messageLog.map((msg, index) => (
+                <Text key={index} className="text-gray-600 font-semibold mr-2">
+                  {msg}
+                </Text>
+              ))}
+            </ScrollView>
             <View
               style={{
                 flexDirection: "column",
