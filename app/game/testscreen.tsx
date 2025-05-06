@@ -14,6 +14,7 @@ import { HStack } from "@/components/ui/hstack";
 import { Box } from "@/components/ui/box";
 import { generateMatrix } from "@/utils/generateMatrix";
 import GameButton from "@/components/GameButton";
+
 const colorMap = new Map<string, string>();
 const colorPalette = [
   "#f94144",
@@ -55,6 +56,7 @@ export default function TestScreen() {
   const [selectedButtons, setSelectedButtons] = useState<
     { row: number; col: number }[]
   >([]);
+  let wordList: string[] = []; // Türkçe kelime listesi
 
   const [randomLetters, setRandomLetters] = useState<string[]>(
     generateRandomLettersWithVowels(7, 2)
@@ -82,9 +84,19 @@ export default function TestScreen() {
     const allLetters = [...selectedVowels, ...remainingLetters];
     return allLetters.sort(() => Math.random() - 0.5); // Harfleri karıştır
   }
-  const handleLetterPress = (letter: string) => {
+  const handleLetterPress = (letter: string, index: number) => {
     setInputWord((prevWord) => prevWord + letter); // Basılan harfi kelimeye ekle
+
+    // Yeni bir rastgele harf oluştur
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const newLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+
+    // Random harfi ilgili indexte güncelle
+    setRandomLetters((prevLetters) =>
+      prevLetters.map((l, i) => (i === index ? newLetter : l))
+    );
   };
+
   const handleMatrixButtonPress = (row: number, col: number) => {
     const isSelected = selectedButtons.some(
       (b) => b.row === row && b.col === col
@@ -370,7 +382,7 @@ export default function TestScreen() {
                 {randomLetters.map((letter, index) => (
                   <TouchableOpacity
                     key={index}
-                    onPress={() => handleLetterPress(letter)}
+                    onPress={() => handleLetterPress(letter, index)}
                   >
                     <Box className="bg-orange-500 w-10 h-10 rounded-lg items-center justify-center">
                       <Text className="text-orange-900 text-3xl font-semibold">
