@@ -12,9 +12,34 @@ import { getToken } from "@/utils/storage";
 import { jwtDecode } from "jwt-decode";
 import { HStack } from "@/components/ui/hstack";
 import { Box } from "@/components/ui/box";
-import colors from "tailwindcss/colors";
-import { Spinner } from "@/components/ui/spinner";
+import { generateMatrix } from "@/utils/generateMatrix";
+import GameButton from "@/components/GameButton";
+const colorMap = new Map<string, string>();
+const colorPalette = [
+  "#f94144",
+  "#f3722c",
+  "#f8961e",
+  "#f9844a",
+  "#f9c74f",
+  "#90be6d",
+  "#43aa8b",
+  "#577590",
+  "#277da1",
+  "#4d908e",
+  "#b5838d",
+  "#6a4c93",
+];
+let colorIndex = 0;
 
+const getColorForKey = (letter: string, points: number | null): string => {
+  if (letter === "" || points === null) return "#ccc";
+  const key = `${letter}-${points}`;
+  if (!colorMap.has(key)) {
+    colorMap.set(key, colorPalette[colorIndex % colorPalette.length]);
+    colorIndex++;
+  }
+  return colorMap.get(key)!;
+};
 export default function TestScreen() {
   const socketRef = useRef<Socket | null>(null);
   const [messageLog, setMessageLog] = useState<string[]>([]);
@@ -27,6 +52,35 @@ export default function TestScreen() {
   const [timerDuration, setTimerDuration] = useState(30 * 60); // default 2 dk
   const [activePlayer, setActivePlayer] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
+  const [randomLetters, setRandomLetters] = useState<string[]>(
+    generateRandomLettersWithVowels(7, 2) // 7 harf, en az 2 sesli harf
+  );
+  const [matrix, setMatrix] = useState<
+    { letter: string; points: number | null }[][]
+  >([]);
+  function generateRandomLettersWithVowels(count = 7, minVowels = 2) {
+    const vowels = "AEIİOÖUÜ";
+    const consonants = "BCÇDFGĞHJKLMNPRSŞTVYZ";
+
+    // Öncelikle minimum sayıda sesli harf ekle
+    const selectedVowels = Array.from(
+      { length: minVowels },
+      () => vowels[Math.floor(Math.random() * vowels.length)]
+    );
+
+    // Kalan harfleri oluştur
+    const remainingLetters = Array.from(
+      { length: count - minVowels },
+      () => consonants[Math.floor(Math.random() * consonants.length)]
+    );
+
+    // Sesli harfleri ve diğer harfleri birleştir ve karıştır
+    const allLetters = [...selectedVowels, ...remainingLetters];
+    return allLetters.sort(() => Math.random() - 0.5); // Harfleri karıştır
+  }
+  const handleLetterPress = (letter: string) => {
+    setInputWord((prevWord) => prevWord + letter); // Basılan harfi kelimeye ekle
+  };
 
   useEffect(() => {
     const fetchUsername = async () => {
@@ -77,6 +131,8 @@ export default function TestScreen() {
         if (token) {
           socketRef.current?.emit("authenticate", { token });
           setIsConnected(true);
+          const newMatrix = generateMatrix();
+          setMatrix(newMatrix);
         }
       });
 
@@ -144,7 +200,7 @@ export default function TestScreen() {
   };
 
   return (
-    <View className="flex-1 items-center justify-center bg-white px-4">
+    <View className="flex-1 items-center justify-center bg-white ">
       {!currentRoom ? (
         <>
           <TextInput
@@ -161,19 +217,39 @@ export default function TestScreen() {
           </TouchableOpacity>
           {isWaiting && (
             <Text className="text-blue-500 font-semibold">
-              Diğer kullanıcı bekleniyor
-              <Spinner color={colors.amber[600]} />
+              Diğer kullanıcı bekleniyor...
             </Text>
           )}
         </>
       ) : (
         <>
-          <ScrollView className="flex-1 w-full px-4">
+          <ScrollView className="flex-1 w-full px-4 ">
             {messageLog.map((msg, i) => (
               <Text key={i} className="text-lg text-gray-800 my-1">
                 {msg}
               </Text>
             ))}
+            <View
+              style={{
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {matrix.map((row, rowIndex) => (
+                <View key={rowIndex} style={{ flexDirection: "row" }}>
+                  {row.map((cell, cellIndex) => (
+                    <GameButton
+                      key={cellIndex}
+                      TopLeftText={
+                        cell.points !== null ? cell.points.toString() : ""
+                      }
+                      MiddleText={cell.letter}
+                      backgroundColor={getColorForKey(cell.letter, cell.points)}
+                    />
+                  ))}
+                </View>
+              ))}
+            </View>
           </ScrollView>
 
           <View className="absolute bottom-0 left-0 right-0 bg-white p-4">
@@ -184,8 +260,7 @@ export default function TestScreen() {
                 </Text>
               ) : (
                 <Text className="text-gray-600 font-semibold">
-                  Sıra: {activePlayer || "Bilinmiyor"}
-                  <Spinner color={colors.amber[600]} />
+                  Bekleniyor... Sıra: {activePlayer || "Bilinmiyor"}
                 </Text>
               )}
             </View>
@@ -205,11 +280,29 @@ export default function TestScreen() {
               </TouchableOpacity>
             </View>
 
-            <HStack space="md" reversed={false}>
-              <Box className="h-20 w-20 bg-primary-300" />
-              <Box className="h-20 w-20 bg-primary-400" />
-              <Box className="h-20 w-20 bg-primary-500" />
-            </HStack>
+            <TextInput
+              value={inputWord}
+              onChangeText={setInputWord}
+              placeholder="Kelimenizi yazın"
+              className="border border-gray-300 rounded-lg px-4 py-2 mb-2"
+              editable={false}
+            />
+            <View className="flex-row justify-center mb-2">
+              <HStack space="md" reversed={false}>
+                {randomLetters.map((letter, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => handleLetterPress(letter)}
+                  >
+                    <Box className="bg-orange-500 w-10 h-10 rounded-lg items-center justify-center">
+                      <Text className="text-orange-900 text-3xl font-semibold">
+                        {letter}
+                      </Text>
+                    </Box>
+                  </TouchableOpacity>
+                ))}
+              </HStack>
+            </View>
             <TouchableOpacity
               onPress={handleSendWord}
               className="bg-green-500 px-4 py-3 rounded-xl"
